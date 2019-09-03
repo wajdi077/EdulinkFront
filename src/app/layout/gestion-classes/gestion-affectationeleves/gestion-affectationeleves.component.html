@@ -1,0 +1,130 @@
+<div [@routerTransition]>
+  <br>
+  <div class="text-center" ><h1> Reaffecter un ou plusieurs élèves du classe {{nomclasse}}</h1></div>
+  <div class="row card-block">
+    <div class="card mb-3 col-xl-12">
+      
+      
+      
+      
+      <div class="form-group row">
+        
+        
+        
+        <form action="#" method="get" class="col-xs-5">
+          <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Search..." [(ngModel)]="filter">
+            <span class="input-group-btn">
+              <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                <i class="fa fa-remove"></i>
+              </button>
+            </span>
+          </div>
+        </form></div>
+        
+        
+      </div>
+    </div>
+    
+    
+    
+    
+    <div class="row card-block">
+      <div class="table-responsive">
+        <table class="card-block table table-hover table-bordered" id="testTable">
+          <thead>
+            <tr class="bgcleargray">
+              <th></th>
+              <th (click)="sort('nom')">Nom
+                <i aria-hidden="true" class="fa fa-chevron-up"
+                [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"
+                *ngIf="key =='nom'"></i>
+              </th>
+              <th>Prénom</th>
+              <th>Numéro D'inscription</th>
+              <th>Classe Actuelle</th>
+              
+              
+              <th class="horizontal-icons">
+            
+              <button mat-raised-button color="accent"  (click)="raiseModal()"
+              [attr.data-toggle]=" modalClosed ? 'modal' : ' '" data-target="#modal-default">Reaffecter au classe</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr *ngFor="let u of eleves  
+          | filter:filter | orderBy: key : reverse| paginate: { itemsPerPage: 12, currentPage: currentPage }; let rowIndex = index ">
+          <td scope="row">
+            <i class="fa fa-eye colored" aria-hidden="true" ></i>
+          </td>
+          <td><p>{{u.nom}}</p></td>
+          <td>{{u.prenom}}</td>
+          <td>{{u.numInscription}}</td>
+          <td>{{u.classeActuel}}</td>
+          
+          <td>
+            
+            
+            <div class="checkbox">
+              <input type="checkbox" (click)="checkboxes(u)"
+              [checked]="_isSelected(u.numInscription)"
+              (change)="_toggleSelection(u.numInscription)"> 
+            </div>
+            
+          </td>
+        </tr>
+        
+      </tbody>
+      
+    </table>
+    <div  class="text-center">
+      <pagination-controls   previousLabel="Précédent"
+      nextLabel="Suivant"
+      (pageChange)="currentPage = $event">
+      
+    </pagination-controls>
+  </div>
+  
+</div>
+</div>
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <form [formGroup]="editform">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Default Modal!!!</h4>
+          </div>
+          <div class="modal-body">
+            <div class="espace card card-block">
+              <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">nom de la classe actuelle</b>
+                <label class="col-xl-8">{{monclasse.nomclasse}}</label>
+              </div>
+              <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Liste des classe de {{monclasse.niveau}} </b>
+                
+                <select #selected class="custom-select"  formControlName="nomclasse">
+                  <option value="" disabled>Choisisez la nouvelle class</option>
+                  <option *ngFor="let class of classeDesEleve" [value]="class.nomclasse">{{class.nomclasse}}</option>
+               </select>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="saveChanges(selected.value)"  >Save changes</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+</div>

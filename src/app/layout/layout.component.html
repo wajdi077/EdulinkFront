@@ -1,0 +1,22 @@
+
+<div class="wrapper" *ngIf="profil!='Parrain'" style="height: auto; min-height: 100%;">
+    <app-topnavbar></app-topnavbar>
+    <app-asidenav></app-asidenav>
+
+    <div class="content-wrapper"style="min-height: 1090px;" >
+      <section class="content-header">
+        
+        <section class="content">
+           
+          <router-outlet></router-outlet>
+        </section>
+      </section>
+    </div>
+    <!--<app-settingnavbar></app-settingnavbar>-->
+    <app-footernavbar></app-footernavbar>
+    <app-settingnavbar></app-settingnavbar>
+  </div>
+<div  *ngIf="profil=='Parrain'" >
+
+  <app-espace-parent></app-espace-parent>
+</div>

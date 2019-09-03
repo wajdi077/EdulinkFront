@@ -1,0 +1,62 @@
+<div class="modal-header">
+    <button type="button" (click)="activeModal.dismiss('Cross click')" class="close" aria-label="Close">&times;
+    </button>
+    <h4 class="modal-tittle">Configurer les notifications</h4>
+</div>
+
+<div class="modal-body ">
+    <div class="espace card card-block">
+        <div class="row">
+            <p class="col-xl-2">Recherche</p>
+            <input class="form-control col-xl-8" [(ngModel)]="filter">
+        </div>
+    </div>
+    <br>
+    <div class="espace">
+        <div class="table-responsive">
+            <table class="card-block table table-hover table-bordered">
+                <thead>
+                <tr class="bgcleargray">
+                    <th> Rapports</th>
+                    <th> Notifications</th>
+                    <th> Type de message</th>
+                    <th> Statut</th>
+                    <th>
+                        <i class="fa fa-trash trash" (click)="deleteMsg()" aria-hidden="true"></i>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngIf="destinataires.length==0">
+                    <td colspan="99"> Aucun enregistrement</td>
+                </tr>
+                <tr *ngFor="let d of destinataires|filter:filter">
+                    <td> {{d.rapport}}</td>
+                    <td> {{d.type_notif}}</td>
+                    <td> {{d.type_msg}}</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" style="visibility: hidden;"
+                                   [ngModel]="d.statut"
+                                   (ngModelChange)="d.statut = $event;ChangeStatut(d.id)">
+                            <i *ngIf="d.statut" class="fa fa-check-circle-o colored"></i>
+                            <i *ngIf="!d.statut" style="color: red;" class="fa fa-times-circle-o"></i>
+                        </label>
+                    </td>
+
+                    <td class="text-center">
+                        <div class="checkbox">
+                            <input type="checkbox" [checked]="_isSelected(d)" (change)="_toggleSelection(d)">
+                        </div>
+                    </td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+</div>

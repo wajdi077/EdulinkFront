@@ -1,0 +1,65 @@
+
+<body    style="background-image: url(/assets/dist/img/login.jpg) ;background-attachment: fixed ; background-size: cover" >
+ <style>
+    
+    
+    </style>
+  <div class="login-box" >
+     
+    <div class="login-logo">
+        <img src="assets/dist/img/graduation001.png" class="user-image" alt="User Image">
+      <a href="../../index2.html"><b style="color: cornflowerblue">Scol</b><b style="color:brown">arity</b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body" [@routerTransition] >
+        
+      <p class="login-box-msg">Sign in to start your session</p>
+  
+      <form [formGroup]="loginform" (submit)="login($event, username.value, password.value)">
+        <div class="form-group has-feedback">
+          <input #username type="email" class="form-control" placeholder="Nom d'utilisateur" formControlName="username">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-12 msg"
+          *ngIf="loginform.controls?.username.invalid && loginform.controls?.username.touched">
+         l'identifiant est obligatoire
+     </div>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" #password class="form-control" placeholder="Password" formControlName="password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div>
+          <div class="row"
+                             *ngIf="loginform.controls?.password.invalid && loginform.controls?.password.touched">
+                            Le mot de passe contient au moins 3 caractéres
+                        </div>
+        </div>
+        <div class="row">
+        
+          <!-- /.col -->
+          <div class="col-xs-form4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat " [disabled]="loginform.invalid">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+  
+ 
+      <!-- /.social-auth-links -->
+  
+      <a  (click)="warning()">I forgot my password</a><br>
+      
+    </div>
+    <!-- /.login-box-body -->
+  </div>
+  <!-- /.login-box -->
+  
+  <!-- jQuery 3 -->
+
+  <!-- iCheck -->
+
+
+
+  </body>

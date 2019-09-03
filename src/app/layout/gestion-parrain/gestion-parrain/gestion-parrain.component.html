@@ -1,0 +1,38 @@
+<div class="box"><div class="box-body">
+  <table id="tbempl1" class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Adresse Email</th>
+      <!-- <th>Sexe</th> -->
+      <th>numero telephone</th>
+      <td>Action</td>
+    </tr>
+    </thead>
+    <tbody  >
+    <tr *ngFor="let p of listParrains">
+      
+      <td>{{p.nom}}</td>
+      <td>{{p.prenom}}</td>
+      <td>{{p.email}}</td>
+      <!-- <td>{{p.sexe}}</td> -->
+      <td>{{p.telephone}}</td>
+      <td class="btn-group">
+        <a class="btn btn-app" [routerLink]="['/gestion-parrain/affecter',{username:p.username}]"> <i class="fa fa-users"></i> Affecter</a>
+        
+      </td>
+    </tr>
+ 
+    </tbody>
+<!--     <tfoot>
+    <tr>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Adresse EMail</th>
+      <th>Sexe</th>
+      <th>numero telephone</th>
+    </tr>
+    </tfoot> -->
+  </table>
+</div></div>

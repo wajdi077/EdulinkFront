@@ -1,0 +1,276 @@
+<div [@routerTransition]>
+
+
+    <div *ngIf="access.getallop==true">
+      <br>
+      <div class="text-center">
+        <h1>Gestion des Enseignant</h1>
+      </div>
+      <style>
+        .example-modal .modal {
+          position: relative;
+          top: auto;
+          bottom: auto;
+          right: auto;
+          left: auto;
+          display: block;
+          z-index: 1;
+        }
+  
+        .example-modal .modal {
+          background: transparent !important;
+        }
+      </style>
+      <div class="row card-block">
+        <div class="card mb-3 col-xl-12">
+  
+  
+  
+          <div class="form-group row">
+            <!-- <label class="txtright col-xl-4">Profil de l'utilisateur</label>
+                      <select #select class="form-control col-xl-6">
+                          <option *ngFor="let item of list" [value]="item.name">{{item.name}}</option>
+                      </select> -->
+  
+          </div>
+  
+  
+          <div class="form-group row">
+  
+  
+  
+            <form action="#" method="get" class="col-xs-5">
+              <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="rechercher..." [(ngModel)]="filter">
+                <span class="input-group-btn">
+                  <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                    <i class="fa fa-remove"></i>
+                  </button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row card-block">
+        <div class="col-xl-12 nopadding">
+          <div class="text-right">
+            <button type="button" class="btn btn-primary " [routerLink]="['/gestion-utilisateurs/ajouter']">
+              Ajouter
+            </button>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+      <div class="row card-block">
+        <div class="table-responsive">
+          <table class="card-block table table-hover table-bordered" id="testTable">
+            <thead>
+              <tr class="bgcleargray">
+                <th></th>
+                <th (click)="sort('nom')">Nom
+                  <i aria-hidden="true" class="fa fa-chevron-up"
+                    [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}" *ngIf="key =='nom'"></i>
+                </th>
+                <th>Prénom</th>
+                <th>Username </th>
+                <th>Action</th>
+                <th>Affecter Niveau</th>
+
+                <th class="text-right">
+  
+                  <button mat-raised-button color="primary" 
+                  (click)="archiverenseignant(users)" [matBadge]="count"
+                    matBadgePosition="before" matBadgeColor="accent">
+                    Archiver
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color: #f9f9f9;">
+  
+              <!-- <tr *ngIf="utilisateurs.length == 0">
+                      <td colspan="99" align="center">
+                          Aucun enregistrement
+                      </td>
+                  </tr>
+       -->
+              <tr
+                *ngFor="let u of utilisateurs  
+              | filter:filter | orderBy: key : reverse| paginate: { itemsPerPage: 12, currentPage: currentPage }; let rowIndex = index "
+                [style.color]="(u.enabled||enabled)?'black':'darkgray'">
+                <td scope="row">
+                  <i class="fa fa-eye colored" aria-hidden="true" data-toggle="modal" data-target="#modal-defaults"
+                    (click)="detailUser(u)"></i>
+                  
+                    <div class="modal fade" id="modal-defaults">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">En construction</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>En cours &hellip;</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                        </div>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
+                </td>
+                <td>
+                  <p>{{u.nom}}</p>
+                </td>
+                <td>{{u.prenom}}</td>
+                <td>{{u.username}}</td>
+                <td>
+  
+                  <a class="btn btn-xs" (click)="editUser(u)" data-toggle="modal" data-target="#modal-default">
+                    <i class="fa fa-edit" aria-hidden="true"></i> Modifier
+                  </a>
+  
+  
+                </td>
+
+
+
+                  <button mat-raised-button color="primary" [routerLink]="['/gestion-enseignant/ajouterniveau',u.id]">Affecter des niveaux</button>
+
+
+                 
+
+
+
+
+
+                <td class="text-right">
+                  <div class="checkbox">
+                    <input type="checkbox" (click)="checkboxes()" [checked]="_isSelected(u)"
+                      (change)="_toggleSelection(u)">
+                  </div>
+                </td>
+  
+              </tr>
+  
+            </tbody>
+  
+          </table>
+          <div class="text-center">
+            <pagination-controls previousLabel="Précédent" 
+            nextLabel="Suivant" (pageChange)="currentPage = $event">
+  
+            </pagination-controls>
+          </div>
+  
+        </div>
+        <div class="modal fade" id="modal-default">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Default Modal</h4>
+              </div>
+              <div class="modal-body">
+                <div class="espace card card-block">
+  
+                  <!-- <div class="row espace25">
+                    <b class="col-xl-4 txtrightespace">Profil de l'utilisateur</b>
+                    <label class="col-xl-8">{{edituser.profil}}</label>
+                  </div>
+   -->
+                  <div class="row espace25">
+                    <b class="col-xl-4 txtrightespace">Nom</b>
+                    <input type="text" class="form-control" required name="nom"
+                    placeholder="Tapez votre NOM" [(ngModel)]="edituser.nom">
+                  </div>
+  
+                  <div class="row espace25">
+                    <b class="col-xl-4 txtrightespace">Prénom</b>
+                    <input type="text" class="form-control" required name="prenom"
+                    placeholder="Tapez votre NOM" [(ngModel)]="edituser.prenom">
+                                    </div>
+  
+                  <div class="row espace25">
+                    <b class="col-xl-4 txtrightespace">Photo</b>
+                    <input type="text" class="form-control" required name="photo"
+                    placeholder="Tapez votre NOM" [(ngModel)]="edituser.photo">
+                              </div>
+  
+                  <div class="row espace25">
+                    <b class="col-xl-4 txtrightespace">Email</b>
+                    <input type="text" class="form-control" required name="email"
+                    placeholder="Tapez votre NOM" [(ngModel)]="edituser.email">
+                  </div>
+  
+                  <div class="row espace25">
+                    <b class="col-xl-4 txtrightespace">Nom d'utilisateur</b>
+                    <input type="text" class="form-control" required name="nom"
+                    placeholder="Tapez votre NOM" [(ngModel)]="edituser.username">
+                  
+                  </div>
+  
+                  <div class="row espace25">
+                    <b class="col-xl-4 txtrightespace">Mot de passe</b>
+                    <input type="text" class="form-control" required name="password"
+                    placeholder="Tapez votre NOM" [(ngModel)]="edituser.password">
+                  </div>
+  
+                  <div class="row espace25">
+                    <b class="col-xl-4 txtrightespace">Téléphone</b>
+                    <input type="text" class="form-control" required name="telephone"
+                    placeholder="Tapez votre NOM" [(ngModel)]="edituser.telephone">
+                  </div>
+  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="UpdateUser()">Save
+                    changes</button>
+                
+                  </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+    <div *ngIf="access?.getallop==false">
+      <section class="content">
+        <div class="error-page">
+          <div class="text-center">
+            <h2 class="headline text-yellow"> 404</h2>
+          </div>
+  
+  
+          <div class="error-content">
+            <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+  
+  
+  
+  
+          </div>
+          <!-- /.error-content -->
+        </div>
+        <!-- /.error-page -->
+      </section>
+  
+  
+    </div>
+  </div>

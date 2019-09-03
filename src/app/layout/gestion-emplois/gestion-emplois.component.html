@@ -1,0 +1,129 @@
+<div [@routerTransition]>
+    <div class="text-center" ><h1>Gestion d'emplois de temps </h1></div>
+
+Veuillez choisir le jour et l'heure pour Ajouter Un Programme Scolaire
+
+<div>
+
+      <table class="table table-bordered table-hover dataTable" id="testTable">
+               <thead >
+               
+                        <tr  >
+                            
+                        <th >heures\jours</th>
+                        <th class="customslim" >{{lundi}}</th>
+                        <th class="customslim">{{mardi}}</th>
+                        <th class="customslim">{{mercredi}}</th>
+                        <th class="customslim">{{jeudi}}</th>
+                        <th class="customslim">{{vendredi}}</th>
+                        <th class="customslim">{{samedi}}</th>
+                        </tr>
+                        
+                        <tr *ngFor="let h of heures "  style="border-color: black" >
+                          
+                                <th class="heures">{{h.heureDebut}} -{{h.heureFin}}</th>
+                                <style type="text/css">
+                td:hover {
+    background-color:dodgerblue;
+    cursor: pointer;
+    
+}
+                                    </style>
+                                <td (click)="ajouterunprogramme(h,lundi)" data-toggle="modal" data-target="#modal-default" ></td><td (click)="ajouterunprogramme(h,mardi)"  data-toggle="modal" data-target="#modal-default"></td> <td (click)="ajouterunprogramme(h,mercredi)" data-toggle="modal" data-target="#modal-default"></td>
+                                <td (click)="ajouterunprogramme(h,jeudi)" data-toggle="modal" data-target="#modal-default"></td> <td (click)="ajouterunprogramme(h,vendredi)" data-toggle="modal" data-target="#modal-default"></td><td (click)="ajouterunprogramme(h,samedi)" data-toggle="modal" data-target="#modal-default"></td>
+                        
+                            </tr>
+                    </thead>
+               
+            <tbody>  
+
+
+  
+               
+                </tbody>
+
+            </table>
+</div>
+
+</div>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" id="modal-default">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">  <p> vous allez remplir une seance le {{jour}} de {{heure?.heureDebut}} à {{heure?.heureFin}}  </p></h4>
+            </div>
+            <div class="modal-body">
+
+                    <div class="box-body">
+                        <form [formGroup]="loginform">
+                            <div class="card card-block">
+                                    <div class="col-xs-5"> <label class="txtright col-xl-4">Niveau d'etude :</label>
+                                        <select  class="form-control"  (click)="getClassesbyniveau()" formControlName="niveau">
+                                            <option *ngFor="let item of list" [value]="item.name" >{{item.name}}</option>
+                                        </select >
+                                    </div>
+                                    <div class="col-xs-5">
+                                            <label class="txtright col-xl-4">Classes :</label>
+                                               <select  class="form-control col-xl-3" formControlName="classe">
+                                                                <option *ngFor="let c of classess " [value]="c.nomclasse">{{c.nomclasse}}</option>
+                                                                       </select>
+                                           </div>
+                              
+                              <div class="col-xs-5">
+                                    <label class="txtright col-xl-4">salle :</label>
+                                    <select  class="form-control col-xl-6" formControlName="salle" >
+                                    <option *ngFor="let s of salles" [value]="s.nomSalle" >{{s.nomSalle}}</option>
+                        </select >
+                        </div>
+                        <div class="col-xs-5">
+                                <label class="txtright col-xl-4">semaine scolaire :</label>
+                                <select  class="form-control col-xl-6" formControlName="semaine" >
+                                    <option *ngFor="let s of semaines" [value]="s.semaine" >{{s.semaine}}-- {{s.datedebut}} ->{{s.datefin}} </option>
+                                </select >
+                        
+                          </div>
+                          <div class="col-xs-5">
+                                <label class="txtright col-xl-4">matiere :</label>
+                               <select #filter  class="form-control col-xl-6" formControlName="matiere" (click)="getenseignantbymatiere()">
+                                <option *ngFor="let m of matieres " [value]="m.nommatiereFR" >{{m.nommatiereFR}}</option>
+                           </select >
+                       </div> 
+                      
+          <div class="col-xs-5">
+                <label>Selectionner l'enseignant </label>
+                <select  #enseignant  multiple class="form-control" formControlName="user" >
+                  <option *ngFor="let p of prof " [value]="p.username">{{p?.nom}} -{{p?.prenom}} </option>
+           
+                </select>
+              </div>
+            
+          <div  class="col-xs-5">
+                <label class="txtright col-xl-4">inserer une remarque : </label>
+
+        <textarea  class="form-control" rows="3" placeholder="laisser une remarque  " formControlName="remarque"></textarea>
+        
+                        </div>
+                            </div>
+                        </form>  </div>
+          </div>
+          
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary"  [disabled]="loginform.invalid" data-dismiss="modal" (click)="addProgramme()">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <style>
+      tr:hover {
+        background-color:darkseagreen;
+        cursor: pointer;
+        
+        }</style>
+          

@@ -1,0 +1,70 @@
+<br>
+<mat-horizontal-stepper linear #stepper  ><div class="example-container">
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+        <div class="example-form">
+      <form [formGroup]="firstFormGroup"  >
+        <ng-template matStepLabel>Remplir les Informations pour l'élève</ng-template>
+   <br>
+        <br>  <mat-form-field>
+          <input matInput placeholder="Nom" formControlName="nom" required [(ngModel)]="eleve.nom"> 
+         
+        </mat-form-field> <span class="row espace25" *ngIf="!firstFormGroup.controls.nom.valid && firstFormGroup.get('nom').touched">
+          <div class="col-xl-4"></div> <div class="col-xl-6">Nom ne peut pas etre vide.</div>
+          </span>
+        <br>  <mat-form-field>   <input matInput placeholder="Prénom" [(ngModel)]="eleve.prenom" formControlName="prenom" required> 
+         
+        </mat-form-field> <span class="row espace25" *ngIf="!firstFormGroup.controls.prenom.valid && firstFormGroup.get('prenom').touched">
+          <div class="col-xl-4"></div> <div class="col-xl-6">Prenom ne peut pas etre vide.</div>
+          </span>
+        <br>
+        <br> <mat-radio-group formControlName="sexe" required [(ngModel)]="eleve.sexe">
+            <mat-radio-button value="1">Masculin</mat-radio-button>
+            <mat-radio-button value="2">Feminin</mat-radio-button>
+          </mat-radio-group>
+      <br>
+        <br> <mat-form-field>  <input matInput placeholder="Address"  [(ngModel)]="eleve.adresse" formControlName="adresse" required> 
+          <span class="row espace25" *ngIf="!firstFormGroup.controls.nom.valid && firstFormGroup.get('adresse').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">Nom ne peut pas etre vide.</div>
+              </span>
+        </mat-form-field>
+        <br>
+        <br> <mat-form-field>  <input matInput placeholder="Niveau d'etude"  [(ngModel)]="eleve.niveau" formControlName="niveau" required> 
+          <span class="row espace25" *ngIf="!firstFormGroup.controls.nom.valid && firstFormGroup.get('niveau').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">Nom ne peut pas etre vide.</div>
+              </span>
+        </mat-form-field>
+        <br><br> <mat-form-field>
+            <input matInput [matDatepicker]="dp"  [(ngModel)]="eleve.dateNaissance" placeholder="Date De Naissance" formControlName="date" required>
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      
+      </form></div>
+    </mat-step></div>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+      <div class="border border-primary">
+      <form [formGroup]="secondFormGroup" >
+        <ng-template matStepLabel>Remplir les Informations pour le parrain</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Nom" formControlName="nom" [(ngModel)]="parrain.nom" required>
+        </mat-form-field>
+        <br><br>  <mat-form-field>
+            <input matInput placeholder="Prénom" formControlName="prenom" [(ngModel)]="parrain.prenom" required>
+          </mat-form-field>
+          <br><br> <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" [(ngModel)]="parrain.email" required>
+            </mat-form-field>
+            <br><br>  <mat-form-field>
+                <input matInput placeholder="Télephone" formControlName="tel" [(ngModel)]="parrain.tel" required>
+              </mat-form-field>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperPrevious (click)="addelevewithparrain()" >valider</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </form></div>
+    </mat-step>
+  </mat-horizontal-stepper>

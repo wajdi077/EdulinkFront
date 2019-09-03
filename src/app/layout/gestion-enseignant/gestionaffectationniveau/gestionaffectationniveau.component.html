@@ -1,0 +1,52 @@
+<div [@routerTransition]>
+  <br>
+  Affecter ou reaffecter un ou plusieurs niveau 
+  <!-- a {{id}}  -->
+      
+
+
+
+  <div class="row card-block">
+      <div class="table-responsive">
+          <table class="card-block table table-hover table-bordered" id="testTable">
+              <thead>
+              <tr class="bgcleargray">
+                  <th>Niveau d'Etude</th>
+                  
+                  <th class="horizontal-icons">
+                        <button mat-raised-button color="primary" (click)="AffecterDesNiveau()"
+                         [matBadge]="count" matBadgePosition="before" matBadgeColor="accent">
+                      Affecter
+                    </button>
+                  </th>
+              </tr>
+              </thead>
+              <tbody>
+
+              
+              <tr *ngFor="let u of niveau">
+                  
+                  <td><p>{{u.niveau.nomniveau}}</p></td>
+                  
+                  <td>
+              
+               
+                      <div class="checkbox">
+                          <input type="checkbox" (click)="checkboxes(u)"
+                       [checked]="_isSelected(u.niveau.nomniveau)"
+                                 (change)="_toggleSelection(u.niveau.nomniveau)"> 
+                      </div>
+                  </td>
+              </tr>
+
+              </tbody>
+
+          </table>
+        
+      </div>
+
+
+
+
+  </div>
+</div>

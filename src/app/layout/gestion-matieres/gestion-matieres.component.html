@@ -1,0 +1,141 @@
+<div [@routerTransition]>
+
+    <div *ngIf="access?.getallop==true">
+        <br>
+        <div class="text-center">
+            <h1>Gestion des Matieres</h1>
+        </div>
+        <div class="row card-block">
+            <div class="form-group row">
+
+
+
+                <form action="#" method="get" class="col-xs-5">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Search..."
+                            [(ngModel)]="filter">
+                        <span class="input-group-btn">
+                            <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-remove"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xl-4"></div>
+            <div class="col-xl-4 nopadding">
+                <div class="text-right">
+                    <button (click)="adding = true; addingUsers=false " type="button" class="btn btn-primary ">
+                        Ajouter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row card-block">
+            <div class="table-responsive">
+                <table class="card-block table table-hover table-bordered">
+                    <thead class="bggray ">
+                        <tr>
+                            <th class=" text-center">Nom</th>
+
+                            <th class=" text-center">Modifier</th>
+                            <th class=" text-center">
+
+                                <button mat-raised-button color="primary" (click)="archiver()" [matBadge]="count"
+                                    matBadgePosition="before" matBadgeColor="accent">
+                                    Supprimer
+                                </button>
+                                <!-- <i class="trash fa fa-trash " aria-hidden="true" (click)="deleteMatiere()"></i> -->
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody style="background-color: #f9f9f9;">
+
+
+                        <tr *ngIf="adding">
+                            <td><input [(ngModel)]="newMatiere.nommatiereFR" (keypress)="chek($event,newMatiere)"
+                                    class="form-control" placeholder="Nom de la matiere" /></td>
+                            <td></td>
+                            <td>
+                                <i (click)="save()" class="colored fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;
+                                <i class="colored fa fa-times-circle" aria-hidden="true" (click)="adding = false;"></i>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr *ngIf="matieres.length == 0">
+                            <td colspan="99" align="center">
+                                Aucune matiere
+                            </td>
+                        </tr>
+
+                        <tr *ngFor="let m of matieres| filter:filter |
+                   paginate: { itemsPerPage: 12, currentPage: currentPage } ;let i=index;">
+                            <td>
+                                <label *ngIf="editing != i">{{m.nommatiereFR}}</label>
+                                <div *ngIf="editing == i">
+
+                                    <input *ngIf="editing == i" type="text" name="" [(ngModel)]="m.nommatiereFR" />
+                                    <i (click)="saveEditRole(m)" class="fa fa-check-circle-o colored"></i>
+                                </div>
+                            </td>
+
+                            <td align="center">
+                                <a class="btn btn-app" (click)="editing = i">
+                                    <i class="fa fa-edit" (click)="editing = i" aria-hidden="true"></i> Edit
+                                </a>
+
+                            </td>
+                            <td align="center">
+                                <div class="checkbox">
+                                    <input type="checkbox" (click)="checkboxes()"
+                                        [checked]="_isSelected(m.nommatiereFR)"
+                                        (change)="_toggleSelection(m.nommatiereFR)">
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <pagination-controls previousLabel="Précédent" nextLabel="Suivant"
+                        (pageChange)="currentPage = $event">
+
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+        <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">
+            <i class="fa fa-check" aria-hidden="true"></i> {{successMessage }}
+        </ngb-alert>
+
+        <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">
+            <i class="fa fa-check" aria-hidden="true"></i> {{errorMessage }}
+        </ngb-alert>
+    </div>
+    <div *ngIf="access?.getallop==false">
+        <section class="content">
+            <div class="error-page">
+                <div class="text-center">
+                    <h2 class="headline text-yellow"> 404</h2>
+                </div>
+
+
+                <div class="error-content">
+                    <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+
+
+
+
+                </div>
+                <!-- /.error-content -->
+            </div>
+            <!-- /.error-page -->
+        </section>
+
+
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ScolarityDPC</title>
+  <base href="/">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="logoscolarity.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="assets/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
+  <link rel="stylesheet" href="assets/bower_components/fullcalendar/dist/fullcalendar.min.css">
+  <link rel="stylesheet" href="assets/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body >
+  <app-root>
+    
+  </app-root>
+  <script type="application/javascript">
+    var global = window;
+  </script>
+  
+
+  <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="assets/bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="assets/dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="assets/plugins/iCheck/icheck.min.js"></script>
+  <script src="assets/dist/js/demo.js"></script>
+
+  <script src="assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+  <script src="assets/bower_components/moment/moment.js"></script>
+  <script src="assets/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.sidebar-menu').tree()
+    })
+  </script>
+  
+      <script>
+        $(function () {
+          //Add text editor
+          $("#compose-textarea").wysihtml5();
+        });
+      </script>
+ <script>
+    $(function () {
+      //Enable iCheck plugin for checkboxes
+      //iCheck for checkbox and radio inputs
+      $('.mailbox-messages input[type="checkbox"]').iCheck({
+        checkboxClass: 'icheckbox_flat-blue',
+        radioClass: 'iradio_flat-blue'
+      });
+  
+      //Enable check and uncheck all functionality
+      $(".checkbox-toggle").click(function () {
+        var clicks = $(this).data('clicks');
+        if (clicks) {
+          //Uncheck all checkboxes
+          $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+          $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+        } else {
+          //Check all checkboxes
+          $(".mailbox-messages input[type='checkbox']").iCheck("check");
+          $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+        }
+        $(this).data("clicks", !clicks);
+      });
+  
+      //Handle starring for glyphicon and font awesome
+      $(".mailbox-star").click(function (e) {
+        e.preventDefault();
+        //detect type
+        var $this = $(this).find("a > i");
+        var glyph = $this.hasClass("glyphicon");
+        var fa = $this.hasClass("fa");
+  
+        //Switch states
+        if (glyph) {
+          $this.toggleClass("glyphicon-star");
+          $this.toggleClass("glyphicon-star-empty");
+        }
+  
+        if (fa) {
+          $this.toggleClass("fa-star");
+          $this.toggleClass("fa-star-o");
+        }
+      });
+    });
+  </script>
+<script>
+  setInterval(function(){
+    $(function () {
+      $('#tbempl1').DataTable();
+    })
+}, 200);
+  
+</script>
+
+</body>
+</html>

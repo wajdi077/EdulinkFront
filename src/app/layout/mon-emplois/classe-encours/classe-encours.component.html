@@ -1,0 +1,175 @@
+<div [@routerTransition]>
+        <br>
+        
+      
+            <div class="row card-block">
+          
+      
+                  
+      
+      
+                    <div class="form-group row">
+                        <label class="txtright col-xl-4">Nom / Prénom/cin</label>
+                        <input class="form-control col-xl-6" type="text" name="search" [(ngModel)]="filter">
+                    </div>
+      
+      
+           
+            </div>
+      
+      
+      
+      
+        <div class="row card-block">
+            <div class="table-responsive">
+                <table class="card-block table table-hover table-bordered" id="testTable">
+                    <thead>
+                    <tr class="bgcleargray">
+                        <th></th>
+                        <th (click)="sort('nom')">Nom
+                            <i aria-hidden="true" class="fa fa-chevron-up"
+                               [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"
+                               *ngIf="key =='nom'"></i>
+                        </th>
+                        <th>Prénom</th>
+                     
+                       
+                        <th class="text-center">
+                                <a type="button"  class="btn btn-success" (click)="addAbsence()">Valider les Absences <span class="badge bg-aqua">{{count}}</span></a>
+                          
+                        </th>
+                        <th class="text-center">Exclus</th>
+                        <th class="text-center">Retenu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+      
+                    
+                    <tr  class="text-center" *ngFor="let u of elevess  
+                    | filter:filter | orderBy: key : reverse| paginate: { itemsPerPage: 100, currentPage: currentPage }; let rowIndex = index "
+                    
+                    [style.background-color]="(u.exclus||enabled)?'FireBrick':'white'" [style.background-color]="(u.absent||enabled)?'Gray':'white'" >
+                        <td scope="row">
+                            <i class="fa fa-eye colored" aria-hidden="true" ></i>
+                        </td>
+                        <td><p>{{u.nom}}</p></td>
+                        <td>{{u.prenom}}</td>
+                      
+                        
+                        <td class="text-center" >
+                    
+                     
+                            <label class="switch" >
+                                <input type="checkbox"  (click)="checkboxes(u)"
+                                [checked]="_isSelected(u.numInscription)"
+                                [checked]="u.absent"  
+                                [(ngModel)]="u.absent"
+                                (change)="_toggleSelection(u.numInscription)">
+                                <span class="slider round"></span>
+                              </label>
+                              
+                        </td>
+                      
+                       
+                        <td> 
+                            <div *ngIf="!_isSelected(u.numInscription)">
+                            <label class="switch" >
+                                <input type="checkbox" data-toggle="modal" #bexclus id="bexclus"
+                                [checked]="u.exclus"  
+                                [(ngModel)]="u.exclus"
+                                
+                                 data-target="#exclus"  (click)="geteleveexclus(u)" 
+                                  >
+                                <span class="slider  " title="exclus"> </span>
+                              </label> </div>
+                            </td>
+                           
+                            
+                        
+                       
+                            
+                           
+                        
+                         <td class="text-center" >  <div *ngIf="!_isSelected(u.numInscription)">
+                            <label class="switch warning"  >
+                                <input type="checkbox" data-toggle="modal" data-target="#modal-default"  (click)="geteleve(u)" >
+                                <span class="slider " title="exclus"> </span>
+                              </label>
+                            </div>  </td>  
+                        
+
+                    </tr>
+       <div class="modal fade" id="exclus">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                        <h3>Exclus</h3>
+                                      <h4 class="modal-title">
+                                          
+                                           <h4 class="modal-tittle">vous allez penaliser Mr {{eleve?.nom}} {{eleve?.prenom}}</h4></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                            <form [formGroup]="exclusform">
+
+                                                    <textarea rows="4" cols="70" #remarque  class="form-control col-xl-8" formControlName="remarque">
+                                                           
+                                                            </textarea>
+                                            </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Annuler</button>
+                                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="exclus()">Valider</button>
+                                    </div>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
+                    </tbody>
+      
+                </table>
+                <div  class="text-center">
+                    <pagination-controls   previousLabel="Précédent"
+                                           nextLabel="Suivant"
+                                           (pageChange)="currentPage = $event">
+      
+                    </pagination-controls>
+                </div>
+      
+            </div>
+      
+      
+      
+      
+        </div>
+       
+      </div>
+      <div class="modal fade" id="modal-default">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                    <h3>RETENU</h3>
+                  <h4 class="modal-title">
+                      
+                       <h4 class="modal-tittle">vous allez penaliser Mr {{eleve?.nom}} {{eleve?.prenom}}</h4></h4>
+                </div>
+                <div class="modal-body">
+                        <form [formGroup]="exclusform">
+
+                                <textarea rows="4" cols="70" #remarque  class="form-control col-xl-8" formControlName="remarque">
+                                       
+                                        </textarea>
+                        </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Annuler</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="retenu()">VAlider</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+      </div>

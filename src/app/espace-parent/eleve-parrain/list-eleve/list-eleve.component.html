@@ -1,0 +1,198 @@
+<mat-card>
+  <mat-card-title>Liste de vos élèves</mat-card-title>
+  <mat-card-content>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- numInscription Column -->
+        <ng-container matColumnDef="numInscription">
+          <th mat-header-cell *matHeaderCellDef> N° inscription </th>
+          <td mat-cell *matCellDef="let element"> {{element.numInscription}} </td>
+        </ng-container>
+
+        <!-- Nom Column -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+        </ng-container>
+
+        <!-- Prenom Column -->
+        <ng-container matColumnDef="prenom">
+          <th mat-header-cell *matHeaderCellDef> Prénom </th>
+          <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+        </ng-container>
+
+        
+        <!-- Classe Column -->
+        <ng-container matColumnDef="classeActuel">
+          <th mat-header-cell *matHeaderCellDef> Classe </th>
+          <td mat-cell *matCellDef="let element"> {{element.classeActuel}} </td>
+        </ng-container>
+
+        <!-- Date Naissance Column -->
+        <ng-container matColumnDef="dateNaissance">
+          <th mat-header-cell *matHeaderCellDef> Date de naissance </th>
+          <td mat-cell *matCellDef="let element"> {{element.dateNaissance}} </td>
+        </ng-container>
+
+        <!-- Emploi de temps Column -->
+        <ng-container matColumnDef="emploiTemps">
+          <th mat-header-cell *matHeaderCellDef> Epmloi de Temps </th>
+
+          <td mat-cell *matCellDef="let element">
+            <a [routerLink]="['/espaceParent/emploi',element.numInscription]">
+              <mat-chip-list>
+                <mat-chip color="primary" selected>Consulter</mat-chip>
+              </mat-chip-list>
+            </a>
+          </td>
+        </ng-container>
+
+
+        <!-- Absence Column -->
+        <ng-container matColumnDef="absence">
+          <th mat-header-cell *matHeaderCellDef> Absence </th>
+
+          <td mat-cell *matCellDef="let element">
+            <a [routerLink]="['/espaceParent/absence',element.numInscription]">
+              <mat-chip-list>
+                <mat-chip color="primary" selected>Consulter</mat-chip>
+              </mat-chip-list>
+            </a>
+          </td>
+        </ng-container>
+
+        <!-- Penalité Column -->
+        <ng-container matColumnDef="penalite">
+          <th mat-header-cell *matHeaderCellDef> Pénalité </th>
+
+          <td mat-cell *matCellDef="let element">
+            <a [routerLink]="['/espaceParent/penalite/',element.numInscription]">
+              <mat-chip-list>
+                <mat-chip color="primary" selected>Consulter</mat-chip>
+              </mat-chip-list>
+            </a>
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+<!-- 
+<div class="skin-blue">
+  <div class=".content-header">
+    <div class="content2">
+      <div class="titrecenter">
+        <h1>Liste de votre élèves</h1>
+      </div>
+      <div class="row card-block">
+        <div class="card mb-3 col-xl-12">
+          <div class="form-group row">
+            <label class="txtright col-xl-4">Recherche</label>
+            <input class="form-control col-xl-6" type="text" name="search">
+          </div>
+        </div>
+      </div>
+
+      <div class="row card-block">
+        <div class="table-responsive">
+          <table class="card-block table table-hover table-bordered" id="testTable">
+            <thead>
+
+              <tr class="bgcleargray">
+          
+
+                <th>N° inscription</th>
+                <th (click)="sort('nom')">Nom & Prénom
+                  <i aria-hidden="true" class="fa fa-chevron-up"
+                    [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}" *ngIf="key =='nom'"></i>
+                </th>
+
+                <th>Niveau étude</th>
+
+                <th>Emploi de temps</th>
+                <th>Absence</th>
+                <th>Pénalité</th>
+              </tr>
+
+
+            </thead>
+            <tbody>
+
+
+              <tr *ngFor="let eleve of listEleve">
+           -->
+
+                <!-- N° inscription -->
+                <!-- <td>{{eleve.numInscription}}</td> -->
+
+                <!-- nom & prénom> -->
+                <!-- <td>
+                  <p> {{eleve.nom}} {{eleve.prenom}}</p>
+                </td> -->
+
+                <!-- Niveau étude -->
+                <!-- <td> {{eleve.niveauEtude}} </td> -->
+
+
+                <!-- Em<td>ploi de temps -->
+<!-- 
+                <td align="center">
+                  <a [routerLink]="['/espaceParent/emploi',eleve.numInscription]" class="btn btn-info btn-lg">
+                    Consulter
+                  </a>
+                </td> -->
+
+
+                <!-- Absence -->
+
+                <!-- <td align="center">
+
+                  <a [routerLink]="['/espaceParent/absence/',eleve.numInscription]" class="btn btn-info btn-lg">
+                    Consulter
+                  </a>
+                </td> -->
+
+
+                     <!-- Pénalité -->
+
+                <!-- <td align="center">
+
+                  <a [routerLink]="['/espaceParent/penalite/',eleve.numInscription]" class="btn btn-info btn-lg">
+                    Consulter
+                  </a>
+                </td> -->
+
+                <!--<td><a [routerLink]="['/espaceParent/penalite/',eleve.numInscription]"> Consulter </a></td>-->
+
+
+
+
+                <!--<div class="checkbox"> -->
+                <!-- <input type="checkbox" [checked]="_isSelected(u.numInscription)" (change)="_toggleSelection(u.numInscription)"> -->
+                <!-- </div> -->
+                <!-- </td> -->
+
+              <!-- </tr>
+
+            </tbody>
+
+          </table>
+          <div class="text-center"> -->
+            <!-- <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="currentPage = $event">
+  
+              </pagination-controls> -->
+          <!-- </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<!-- <router-outlet></router-outlet> -->

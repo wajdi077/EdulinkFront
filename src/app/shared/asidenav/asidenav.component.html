@@ -1,0 +1,169 @@
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar" style="height: auto;">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+       
+        <a>{{user.nom}}  {{user.prenom}}</a>
+        <br>
+        <a ><i class="fa fa-circle text-success"></i> {{profil}}</a>
+      </div>
+    </div>
+    <!-- search form -->
+    <!-- <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+      </div>
+    </form> -->
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu tree" data-widget="tree" *ngIf="profil!='Enseignant'">
+     
+    
+      <li class="active treeview menu-open">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Tableau de Bord</span>
+          <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a routerLink="/Dashboard" [routerLinkActive]="['router-link-active']"><i class="fa fa-circle-o"></i>Tableau de Bord</a></li>
+          <li><a routerLink="/Dashboard/rapport" [routerLinkActive]="['router-link-active']"><i class="fa fa-circle-o"></i>Rapport Journalier</a></li>
+
+          <li><a routerLink="/DashboardDirecteur" [routerLinkActive]="['router-link-active']"><i class="fa fa-circle-o"></i>Tableau de Bord Directeur</a></li>
+
+         
+        </ul>
+      </li>
+      <li class="treeview">
+          <a >
+            <i class="fa fa-wrench"></i> <span>Parametrages Utilisateurs</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a routerLink="/gestion-roles" [routerLinkActive]="['router-link-active']"><i class="fa fa-cog"></i> Gestion des roles</a></li>
+            <li><a routerLink="/gestion-utilisateurs" [routerLinkActive]="['router-link-active']"><i class="fa fa-users"></i> Gestion des Cadres Administratif</a></li>
+            <li><a routerLink="/gestion-parrain" [routerLinkActive]="['router-link-active']"><i class="fa fa-venus-double"></i> Gestion des Parrains</a></li>
+            <li><a routerLink="/gestion-enseignant" [routerLinkActive]="['router-link-active']"><i class="fa fa-venus-double"></i> Gestion des Enseignant</a></li>
+
+          </ul>
+        </li>
+      <li class="treeview">
+        <a>
+          <i class="fa fa-graduation-cap"></i> <span>Gestion d'ecoles</span>
+          <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a routerLink="/gestion-salles" [routerLinkActive]="['router-link-active']"><i class="fa fa-home"></i> Gestion des Salles</a></li>
+        <li><a routerLink="/gestion-matieres" [routerLinkActive]="['router-link-active']"><i class="fa fa-archive"></i> Gestion des matieres</a></li>
+          <li><a routerLink="/gestion-eleves" [routerLinkActive]="['router-link-active']"><i class="fa fa-child"></i> Gestion des Eleves</a></li>
+          <li><a routerLink="/gestion-classes" [routerLinkActive]="['router-link-active']"><i class="fa fa-university"></i> Gestion des Classes</a></li>
+          <li class="treeview">
+            <a >
+              <i class="fa  fa-cogs"></i> <span>Gestion des penalités </span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+              
+              <li><a routerLink="/gestion-exclus" [routerLinkActive]="['router-link-active']"><i class="fa fa-calendar-plus-o"></i> exclus</a></li>
+          <li><a routerLink="/gestion-retenu" [routerLinkActive]="['router-link-active']"><i class="fa fa-file"></i> Retenu</a></li>
+              <li><a routerLink="" [routerLinkActive]="['router-link-active']"><i class="fa fa-diamond"></i> Avertissements</a></li> 
+              
+            </ul>
+          </li>
+          <li class="treeview">
+            <a>
+              <i class="fa fa-graduation-cap"></i> <span>Gestion d'emplois</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+    
+              <li><a routerLink="/emplois-update" [routerLinkActive]="['router-link-active']"><i class="fa fa-university"></i> Modifier Emplois</a></li>
+              <li><a routerLink="/gestion-emplois" [routerLinkActive]="['router-link-active']"><i class="fa fa-calendar-check-o"></i> Ajouter emplois</a></li>
+            </ul>
+            
+          </li>
+        </ul>
+        
+      </li>
+ 
+      <li class="treeview">
+          <a >
+            <i class="fa  fa-cogs"></i> <span>Préferences</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a routerLink="/gestion-niveau" [routerLinkActive]="['router-link-active']"><i class="fa fa-calendar-plus-o"></i>Gestion Niveau</a></li>
+            <li><a routerLink="/gestion-semaine" [routerLinkActive]="['router-link-active']"><i class="fa fa-calendar-plus-o"></i> Semaines Scolaires</a></li>
+            <li><a routerLink="/upload-excel" [routerLinkActive]="['router-link-active']"><i class="fa fa-file"></i> Importer des données</a></li>
+            <li><a routerLink="/gestion-affecte-eleve" [routerLinkActive]="['router-link-active']"><i class="fa fa-file"></i> Affecter des éléves</a></li>
+            <!-- <li><a routerLink="" [routerLinkActive]="['router-link-active']"><i class="fa fa-diamond"></i> Réglage Design</a></li> -->
+            <li><a routerLink="/gestion-affecte-eleve" [routerLinkActive]="['router-link-active']"><i class="fa fa-file"></i> Affecter des éléves</a></li>
+            <li><a routerLink="/historique" [routerLinkActive]="['router-link-active']"><i class="fa fa-file"></i> Gestion Historique</a></li>
+            <li><a routerLink="/archive" [routerLinkActive]="['router-link-active']"><i class="fa fa-file"></i> Gestion Archive</a></li>
+            
+          </ul>
+          
+        </li> 
+      <!-- <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
+     </ul>
+     <ul class="sidebar-menu tree" data-widget="tree" *ngIf="profil=='Enseignant'">
+           
+      <li>
+          <a routerLink="/gestion-message" [routerLinkActive]="['router-link-active']">
+            <i class="fa fa-envelope"></i> <span>Messagerie</span>
+            <span class="pull-right-container">
+                <small class="label pull-right bg-yellow">12</small>
+                <small class="label pull-right bg-green">16</small>
+                <small class="label pull-right bg-red">5</small>
+              </span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/mon-emplois" [routerLinkActive]="['router-link-active']">
+          <i class="fa fa-calendar-check-o">
+
+        </i><span>Mon Emplois</span></a></li>
+        <li>
+          <a routerLink="/notes" [routerLinkActive]="['router-link-active']">
+          <i class="fa fa-calendar-check-o">
+
+        </i><span>Notes</span></a></li>
+        <li class="treeview">
+            <a >
+              <i class="fa  fa-cogs"></i> <span>Préferences</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+              
+
+              <!-- <li><a routerLink="" [routerLinkActive]="['router-link-active']"><i class="fa fa-diamond"></i> Réglage Design</a></li> -->
+              
+            </ul>
+          <!-- </li>        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
+     </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,95 @@
+<div class="modal-header row no-margin-row">
+    <div class="col-xl-5"></div>
+    <button type="button" class="btn btn-primary col-xl-7" (click)="addSiteUser(n, addSiteModal)"> Ajouter un
+        site à cet utilisateur
+    </button>
+
+</div>
+
+<div [hidden]="HideFooterModalOne" class="modal-body">
+    <div class="row">
+        <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr class="bgcleargray">
+                <th class="col-xl-3">Site(s)</th>
+                <th class="col-xl-1">
+                    <i class="fa fa-trash trash" aria-hidden="true" (click)="deleteSiteUser()"></i>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let n of usites.sites">
+                <td>{{n.name}}</td>
+                <td align="center">
+                    <div class="checkbox">
+                        <input type="checkbox"
+                               [checked]="_isSelected(n)"
+                               (change)="_toggleSelection(n)">
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<div [hidden]="HideFooterModalOne" class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Cross click')" aria-label="Close">
+        Fermer
+    </button>
+</div>
+
+
+<ng-template #addSiteModal let-c="close" let-d="dismiss">
+
+    <div class="modal-header">
+        <button type="button" (click)="d('Cross click')" class="close" aria-label="Close">&times;
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <table class="table table-hover table-bordered table-responsive">
+                <thead>
+                <tr class="bgcleargray">
+
+                    <th class="col-xl-3">Site(s)</th>
+
+                    <th class="col-xl-1">
+                        <!--<input type="checkbox" value="" (change)="_toggleSelectAll(UsersOutSites)">-->
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr *ngIf="UsersOutSites.length == 0">
+                    <td colspan="99" align="center">
+                        Aucun site
+                    </td>
+                </tr>
+
+                <tr *ngFor="let s1 of UsersOutSites">
+
+                    <td>{{s1.name}}</td>
+                    <td align="center">
+                        <div class="checkbox">
+                            <input type="checkbox"
+                                   (change)="checkUserSites(s1)">
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addSiteToUser();d()">Ajouter</button>
+        <button type="button" class="btn btn-primary" (click)="d('Cross click')">Annuler</button>
+    </div>
+</ng-template>

@@ -1,0 +1,90 @@
+
+<div [@routerTransition]>
+  <br>
+  <h3>Ajouter un élève </h3>
+  <form [formGroup]="loginform"
+        (submit)="login($event, nom.value, prenom.value, niveauEtude.value, dateNaissance.value, sexe.value, etat.value, cin.value, situationFamiliale.value,remarque.value)">
+      <div class="espace card card-block">
+         
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">Nom</b>
+              <input #nom class="form-control col-xl-6" formControlName="nom">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.nom.valid && loginform.get('nom').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">Nom ne peut pas etre vide.</div>
+              </span>
+
+      
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">Prénom</b>
+              <input #prenom class="form-control col-xl-6" formControlName="prenom">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.prenom.valid && loginform.get('prenom').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">Prenom ne peut pas etre vide.</div>
+              </span>
+              <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">remarque</b>
+                <input #remarque class="form-control col-xl-6" formControlName="remarque">
+            </div>
+            <span class="row espace25" *ngIf="!loginform.controls.remarque.valid && loginform.get('remarque').touched">
+                <div class="col-xl-4"></div> <div class="col-xl-6">remarque ne peut pas etre vide.</div>
+                </span>
+          <!-- <div class="row espace25">
+          <b class="col-xl-4 txtrightespace" >Photo</b>
+          <input #photo class="form-control col-xl-6" formControlName="photo">
+          </div> -->
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">date de Naissance</b>
+              <input type="date" #dateNaissance class="form-control col-xl-6" formControlName="dateNaissance" >
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.dateNaissance.valid && loginform.get('dateNaissance').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">date invalable.</div>
+              </span>
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">sexe</b>
+              <input #sexe class="form-control col-xl-6" formControlName="sexe">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.sexe.valid && loginform.get('sexe').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6"> sexe ne peut pas etre vide.</div>
+              </span>
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">etat</b>
+              <input class="form-control col-xl-4" formControlName="etat" #etat >
+            
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.etat.valid && loginform.get('etat').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">etat ne peuet pas etre vide .</div>
+              </span>
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">carte d'identite</b>
+              <input #cin class="form-control col-xl-6" formControlName="cin">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.cin.valid && loginform.get('cin').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6"> cin  doit contenir 8chiffres.</div>
+              </span>
+
+            <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">niveau d'etude</b>
+              <select #niveauEtude class="form-control col-xl-6" formControlName="niveauEtude">
+                  <option *ngFor="let l of niveau" [value]="l.name">{{l.name}}</option>
+              </select>
+          </div>
+        <span class="row espace25" *ngIf="!loginform.controls.niveauEtude.valid && loginform.get('niveauEtude').touched">
+            <div class="col-xl-4"></div> <div class="col-xl-6">niveau ne peut pas etre vide.</div>
+              </span>
+      </div>
+  </form>
+  <div class="espace card-block">
+      <button type="button"
+              [routerLink]="['../']"
+              class="btn btn-primary second-btn-right">Annuler
+      </button>
+      <button type="submit" class="btn btn-primary first-btn-right" (click)="addEleve()" [disabled]="loginform.invalid" >Valider</button>
+  </div>
+
+</div>

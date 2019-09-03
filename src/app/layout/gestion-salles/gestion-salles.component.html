@@ -1,0 +1,174 @@
+<div [@routerTransition]>
+
+  <br>
+  <div class="text-center">
+    <h1>Gestion des Salles</h1>
+  </div>
+  <div *ngIf="access.getallop==true">
+
+    <div class="row card-block">
+      <div class="card mb-3 col-xl-12">
+
+
+
+        <div class="modal fade" id="modal-default">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modifier Salle</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row espace25">
+                  <b class="col-xl-4 txtrightespace">nom de la salle </b>
+                  <label class="col-xl-8">{{salledecours.nomSalle}}</label>
+                </div>
+                <div class="row espace25">
+                  <b class="col-xl-4 txtrightespace">type de la salle </b>
+                  <input class="form-control col-xl-8" [(ngModel)]="salledecours.type">
+                </div>
+                <div class="row espace25">
+                  <b class="col-xl-4 txtrightespace">remarque sur la salle </b>
+                  <input class="form-control col-xl-8" [(ngModel)]="salledecours.remarque">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                  (click)="editSalle( salledecours.nomSalle, salledecours.type, salledecours.remarque)">Save
+                  changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+
+        <div class="form-group row">
+
+
+
+          <form action="#" method="get" class="col-xs-5">
+            <div class="input-group">
+              <input type="text" name="search" class="form-control" placeholder="Search..." [(ngModel)]="filter">
+              <span class="input-group-btn">
+                <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                  <i class="fa fa-remove"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="row card-block">
+      <div class="col-xl-12 nopadding">
+        <div class="text-right">
+          <button type="button" class="btn btn-primary " [routerLink]="['/gestion-salles/ajouter']">
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row card-block">
+      <div class="table-responsive">
+        <table class="card-block table table-hover table-bordered">
+          <thead class="text-center">
+            <tr class="bgcleargray">
+
+              <th (click)="sort('nomSalle')">nom
+                <i aria-hidden="true" class="fa fa-chevron-up"
+                  [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}" *ngIf="key =='nomSalle'"></i>
+              </th>
+              <th>Type </th>
+              <th>Observation</th>
+
+              <th>Editer</th>
+              <th class="text-right">
+
+                <button mat-raised-button color="primary" (click)="deleteSalle()" [matBadge]="count"
+                  matBadgePosition="before" matBadgeColor="accent">
+                  Supprimer
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngIf="salles.length == 0">
+              <td colspan="99" align="center">
+                Aucun enregistrement
+              </td>
+            </tr>
+
+            <tr style="background-color: #f9f9f9;" *ngFor="let u of salles| filter:filter 
+     | orderBy: key : reverse|
+     paginate: { itemsPerPage: 12, currentPage: currentPage } ;let i=index;">
+
+              <td>
+                <p>{{u.nomSalle}}</p>
+              </td>
+              <td>{{u.type}}</td>
+              <td>{{u.remarque}}</td>
+
+              <td>
+
+                <i class="fa fa-pencil colored" aria-hidden="true" (click)="getSalle(u)" data-toggle="modal"
+                  data-target="#modal-default"></i>
+
+              </td>
+              <td>
+                <div class="checkbox">
+                  <input type="checkbox" (click)="checkboxes()" [checked]="_isSelected(u.idsalle)"
+                    (change)="_toggleSelection(u.idsalle)">
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+        <div class="text-center">
+          <pagination-controls previousLabel="Précédent" nextLabel="Suivant" (pageChange)="currentPage = $event">
+
+          </pagination-controls>
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+  </div>
+  <div *ngIf="access?.getallop==false">
+    <section class="content">
+      <div class="error-page">
+        <div class="text-center">
+          <h2 class="headline text-yellow"> 404</h2>
+        </div>
+
+
+        <div class="error-content">
+          <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+
+
+
+
+        </div>
+        <!-- /.error-content -->
+      </div>
+      <!-- /.error-page -->
+    </section>
+
+
+  </div>
+</div>

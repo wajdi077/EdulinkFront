@@ -1,0 +1,60 @@
+
+<div [@routerTransition]>
+  <br>
+  <h3>Informations sur la Salle </h3>
+  <form [formGroup]="loginform"
+        (submit)="login($event, nomSalle.value, type.value, select.value, remarque.value)">
+      <div class="espace card card-block">
+     
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">Nom de la salle </b>
+              <input #nom class="form-control col-xl-6" formControlName="nomSalle">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.nomSalle.valid && loginform.get('nomSalle').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">Le nom de la salle  ne peut pas etre vide.</div>
+              </span>
+              <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">type de salle </b>
+                <select #select class="form-control col-xl-6"  formControlName="type">
+                    <option *ngFor="let item of list" [value]="item.name">{{item.name}}</option>
+                </select>
+            </div>
+        
+          <span class="row espace25" *ngIf="!loginform.controls.type.valid && loginform.get('type').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">type  ne peut pas etre vide.</div>
+              </span>
+
+          <!-- <div class="row espace25">
+          <b class="col-xl-4 txtrightespace" >Photo</b>
+          <input #photo class="form-control col-xl-6" formControlName="photo">
+          </div> -->
+
+         
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">remarque</b>
+              <input #username class="form-control col-xl-6" formControlName="remarque">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.remarque.valid && loginform.get('remarque').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6"> remarque ne peut pas etre vide.</div>
+              </span>
+
+         
+         
+         
+          
+
+        
+       
+      </div>
+  </form>
+  <div class="espace card-block">
+      <button type="button"
+              [routerLink]="['../']"
+              class="btn btn-primary second-btn-right">Annuler
+      </button>
+      <button type="submit" class="btn btn-primary first-btn-right" (click)="addSalle()" [disabled]="loginform.invalid" >Valider</button>
+  </div>
+
+</div>

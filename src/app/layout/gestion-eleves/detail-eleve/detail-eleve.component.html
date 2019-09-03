@@ -1,0 +1,80 @@
+
+      <h2 class="page-header">Détails d'Élève </h2>
+     
+      <div class="row">
+     
+        <!-- /.col -->
+        <div class="col-md-12">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username ">{{eleve?.prenom}} {{eleve?.nom}}</h3>
+              <h5 class="description-text">{{eleve?.classeActuel}} </h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="http://207.180.211.158/images/assets/images/image2.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-6 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">Date de Naissance</h5>
+                    <span class="description-text">{{eleve?.dateNaissance}}</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+               
+                <!-- /.col -->
+                <div class="col-sm-6">
+                  <div class="description-block">
+                    <h5 class="description-header">Numéro d'Inscription</h5>
+                    <span class="description-text">{{eleve?.numInscription}}</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">Parent</h5>
+                    <div *ngIf="parrainOfEleve">
+                      <span class="description-text">{{parrainOfEleve.Prenom}} {{parrainOfEleve.Nom}}</span>
+                    </div>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">Addresse </h5>
+                    <div *ngIf="parrainOfEleve">
+                    <span class="description-text">{{parrainOfEleve.Addresse}} , {{parrainOfEleve.ville}} - {{parrainOfEleve.codePostal}}</span>
+                  </div>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">Numéro de Télephone</h5>
+                    <div *ngIf="parrainOfEleve">
+                    <span class="description-text">{{parrainOfEleve.Telephone}}</span>
+                  </div>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <div class="col-sm-12">
+                    <ul class="nav nav-stacked">
+                      <li *ngFor="let item of penalities"><a>{{item.type}}<span class="pull-right badge bg-green">{{item.value}}</span></a></li>
+                    </ul>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        <!-- /.col -->
+     
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->

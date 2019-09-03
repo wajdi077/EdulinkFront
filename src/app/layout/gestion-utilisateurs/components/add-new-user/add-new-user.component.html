@@ -1,0 +1,88 @@
+
+<div [@routerTransition]>
+    <br>
+    <h3>Ajouter Utilisateur </h3>
+    <form [formGroup]="loginform"
+          (submit)="login($event, username.value, password.value, select.value, nom.value, prenom.value, tel.value, email.value, langue.value)">
+        <div class="espace card card-block">
+            <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Profil de l'utilisateur</b>
+                <select #select class="form-control col-xl-6" formControlName="select">
+                    <option *ngFor="let item of list" [value]="item.description">{{item.description}}</option>
+                </select>
+            </div>
+
+            <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Nom</b>
+                <input #nom class="form-control col-xl-6" formControlName="nom">
+            </div>
+            <span class="row espace25" *ngIf="!loginform.controls.nom.valid && loginform.get('tel').touched">
+                <div class="col-xl-4"></div> <div class="col-xl-6">Nom ne peut pas etre vide.</div>
+                </span>
+
+            <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Prénom</b>
+                <input #prenom class="form-control col-xl-6" formControlName="prenom">
+            </div>
+            <span class="row espace25" *ngIf="!loginform.controls.prenom.valid && loginform.get('tel').touched">
+                <div class="col-xl-4"></div> <div class="col-xl-6">Prenom ne peut pas etre vide.</div>
+                </span>
+
+            <!-- <div class="row espace25">
+            <b class="col-xl-4 txtrightespace" >Photo</b>
+            <input #photo class="form-control col-xl-6" formControlName="photo">
+            </div> -->
+
+            <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Email</b>
+                <input type="email" #email class="form-control col-xl-6" formControlName="email" email>
+            </div>
+            <span class="row espace25" *ngIf="loginform.hasError('email', 'email') && loginform.get('email').touched">
+                <div class="col-xl-4"></div> <div class="col-xl-6">Email invalable.</div>
+                </span>
+
+            <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Nom d'utilisateur</b>
+                <input #username class="form-control col-xl-6" formControlName="username">
+            </div>
+            <span class="row espace25" *ngIf="!loginform.controls.username.valid && loginform.get('tel').touched">
+                <div class="col-xl-4"></div> <div class="col-xl-6"> Nom d'utilisateur ne peut pas etre vide.</div>
+                </span>
+
+            <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Mot de passe</b>
+                <input class="form-control col-xl-4" formControlName="password" #password [(ngModel)]="t">
+                <button type="button" class="col-xl-2 btn btn-primary btnpadding btn-sm" (click)="makePass()">
+                    <span class="visible-xs-block">générer</span></button>
+            </div>
+            <span class="row espace25" *ngIf="!loginform.controls.password.valid && loginform.get('tel').touched">
+                <div class="col-xl-4"></div> <div class="col-xl-6">Mot de passe doit contenir 3 caractéres.</div>
+                </span>
+            <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Téléphone</b>
+                <input #tel class="form-control col-xl-6" formControlName="tel">
+            </div>
+            <span class="row espace25" *ngIf="!loginform.controls.tel.valid && loginform.get('tel').touched">
+                <div class="col-xl-4"></div> <div class="col-xl-6"> Numéro de téléphone doit contenir 11 chiffres.</div>
+                </span>
+
+             <!--   <div class="row espace25">
+                <b class="col-xl-4 txtrightespace">Langue</b>
+                <select #langue class="form-control col-xl-6" formControlName="langue">
+                    <option *ngFor="let l of langues" [value]="l.name">{{l.name}}</option>
+                </select>
+            </div>
+          <span class="row espace25" *ngIf="!loginform.controls.langue.valid && loginform.get('tel').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">Langue ne peut pas etre vide.</div>
+                </span>-->
+        </div>
+    </form>
+    <div class="espace card-block">
+        <button type="button"
+                [routerLink]="['../']"
+                class="btn btn-primary second-btn-right">Annuler
+        </button>
+        <button type="submit" class="btn btn-primary first-btn-right" (click)="addUser()" [disabled]="loginform.invalid" >Valider</button>
+    </div>
+
+</div>

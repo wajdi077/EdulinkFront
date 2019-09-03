@@ -1,0 +1,75 @@
+<div [@routerTransition]>
+        
+<div class="modal-header">
+
+  <p> vous allez remplir une seance le {{jour}} de {{heure.heureDebut}} à {{heure.heureFin}}  </p>
+</div>
+<div class="modal-body ">
+        <div class="espace card card-block">
+                <div class="row espace25"> <label class="txtright col-xl-4">Niveau d'etude :</label>
+                    <select #filter class="form-control col-xl-6"  (click)="getClassesbyniveau(filter.value)">
+                        <option *ngFor="let item of list" [value]="item.name" >{{item.name}}</option>
+                    </select >
+                </div>
+                    <div class="row espace25">
+                     <label class="txtright col-xl-4">Classes :</label>
+                        <select [(ngModel)]="nomclasse" class="form-control col-xl-6" >
+                                         <option *ngFor="let c of classess " [value]="c.nomclasse">{{c.nomclasse}}</option>
+                                                </select>
+                    </div>
+    <div class="row espace25">
+                <label class="txtright col-xl-4">salle :</label>
+                <select [(ngModel)]="nomsalle" class="form-control col-xl-6" >
+                <option *ngFor="let s of salles" [value]="s.nomSalle" >{{s.nomSalle}}</option>
+    </select >
+    </div>
+    <div class="row espace25">
+            <label class="txtright col-xl-4">semaine scolaire :</label>
+            <select [(ngModel)]="semaine" class="form-control col-xl-6" >
+                <option *ngFor="let s of semaines" [value]="s.semaine" >{{s.semaine}}-- {{s.datedebut}} ->{{s.datefin}} </option>
+            </select >
+    
+      </div>
+    
+      <div class="row espace25">
+                 <label class="txtright col-xl-4">matiere :</label>
+                <select [(ngModel)]="nommatiere"  class="form-control col-xl-6" >
+                 <option *ngFor="let m of matieres" [value]="m.nommatiereFR" >{{m.nommatiereFR}}</option>
+            </select >
+        </div>  
+        <div class="row espace25">
+   
+                    <label class="txtright col-xl-4">selectionner un enseignant :</label>
+                                  <style type="text/css">
+          tr:hover {
+background-color: forestgreen;
+cursor: pointer;
+
+}
+                              </style>
+
+
+<table class="scroll"><thead></thead> <tbody  ><tr *ngFor="let p of prof" (click)="selecteditem(p.username)" ><td >{{p.nom}} -{{p.prenom}}  </td> 
+    <td>
+            <div class="checkbox" >
+                    <input type="checkbox"
+                           [checked]="_isSelected(p.username)"
+                           (change)="_toggleSelection(p.username)">
+                </div>
+    </td></tr></tbody></table>
+                    
+
+  </div>
+  
+                <div class="row espace25">
+                        <label class="txtright col-xl-4">inserer une remarque : </label>
+        
+                <textarea [(ngModel)]="typeprog"   class="textinput" placeholder="laisser une remarque  "></textarea>
+                
+                                </div>
+                               
+                                <button type="button" class="btn btn-success" (click)="addProgramme()">valider</button>
+                                <button type="button" class="btn btn-primary"
+                                (click)="activeModal.dismiss('Cross click')">Annuler
+                        </button>
+</div></div> </div>

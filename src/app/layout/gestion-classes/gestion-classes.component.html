@@ -1,0 +1,186 @@
+<div [@routerTransition]>
+
+  <div *ngIf="access.getallop==true">
+      <br>
+  <div class="text-center" ><h1>Gestion des classes</h1></div>
+      <div class="row card-block">
+          <div class="card mb-3 col-xl-12">
+
+                <div class="form-group row">
+                   
+
+                        <form action="#" method="get" class="col-xs-5">
+                                <div class="input-group">
+                                  <input type="text" name="search" class="form-control" placeholder="Rechercher..." [(ngModel)]="filter">
+                                  <span class="input-group-btn">
+                                          <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                                            <i class="fa fa-remove"></i>
+                                          </button>
+                                        </span>
+                                </div>
+                              </form></div>
+
+          </div>
+      </div>
+
+      <div class="row card-block">
+          <div class="col-xl-12 nopadding">
+              <div class="text-right">
+                <button type="button" class="btn btn-primary " [routerLink]="['/gestion-classes/ajouter']">
+                      Ajouter une classe
+                  </button>
+              </div>
+          </div>
+      </div>
+
+
+
+  <div class="row card-block">
+      <div class="table-responsive">
+          <table class="card-block table table-hover table-bordered" id="testTable">
+              <thead class="text-center">
+              <tr class="bgcleargray">
+                <th></th>
+                
+                  <th  (click)="sort('nomclasse')">Classe
+                      <i aria-hidden="true" class="fa fa-chevron-up"
+                         [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"
+                         *ngIf="key =='nomclasse'"></i>
+                  </th>
+                  <th class="text-center">niveau</th>
+                  <th class="text-center">Remarque</th>
+              
+                  <th class="text-center">Action</th>
+                  <th class="horizontal-icons">
+                      <button mat-raised-button color="primary" (click)="deleteClasse()"
+                      [matBadge]="count" matBadgePosition="before" matBadgeColor="warn">
+                   Archiver
+                 </button>
+                   <!-- <i class="fa fa-trash trash" aria-hidden="true" (click)="deleteClasse()"></i> -->
+                  </th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr *ngIf="classes.length == 0">
+                  <td colspan="99" align="center">
+                      Aucun enregistrement
+                  </td>
+              </tr>
+
+   <tr class="text-center"  *ngFor="let u of classes| filter:filter 
+   | orderBy: key : reverse|
+   paginate: { itemsPerPage: 5, currentPage: currentPage } ;let i=index;">
+   <td scope="row">
+      <button mat-mini-fab color="primary" [routerLink]="['/gestion-classes/ajouterdeseleve',{nomclasse:u.nomclasse}]" >Infos</button>
+   
+</td>
+                  <td><p>{{u.nomclasse}}</p></td>
+                  <td>{{u.niveau}}</td>
+                  <td>{{u.remarque}}</td>
+               
+                  <td class="text-center">
+                    
+             
+                              <button mat-raised-button color="accent" (click)="editClasse(u)" data-toggle="modal" data-target="#modal-default">Modifier</button>
+                                 
+                  </td>
+                  <td>
+                      <div class="checkbox">
+                          <input type="checkbox" (click)="checkboxes(u)"
+                                 [checked]="_isSelected(u.nomclasse)"
+                                 (change)="_toggleSelection(u.nomclasse)">
+                      </div>
+                  </td>
+              </tr>
+
+              </tbody>
+
+          </table>
+          <div  class="text-center">
+              <pagination-controls   previousLabel="Précédent"
+                                     nextLabel="Suivant"
+                                     (pageChange)="currentPage = $event">
+
+              </pagination-controls>
+          </div>
+
+      </div>
+
+      <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+                <form [formGroup]="editform">
+          <div class="modal-content">
+              
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Default Modal</h4>
+            </div>
+            <div class="modal-body">
+                <div class="espace card card-block">
+
+          
+
+
+       
+
+                    <div class="row espace25">
+                        <b class="col-xl-4 txtrightespace">nom de la classe </b>
+                        <label class="col-xl-8">{{classe.nomclasse}}</label>
+                    </div>
+          
+                  
+          
+                   
+          
+                 
+          
+                    <div class="row espace25">
+                        <b class="col-xl-4 txtrightespace">type de la classe </b>
+                        <input class="form-control col-xl-8" formControlName="niveau" [(ngModel)]="classe.niveau">
+                    </div>
+          
+                    <div class="row espace25">
+                      <b class="col-xl-4 txtrightespace">remarque sur la classe  </b>
+                      <input class="form-control col-xl-8" formControlName="remarque" [(ngModel)]="classe.remarque">
+                  </div>
+                    
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="editClasse(classe.nomclasse,classe.niveau,classe.remarque)">Save changes</button>
+            </div>
+        </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      
+
+
+  </div>
+</div>
+<div  *ngIf="access?.getallop==false">
+    <section class="content">
+            <div class="error-page">
+              <div class="text-center">  <h2 class="headline text-yellow"> 404</h2></div>
+             
+      
+              <div class="error-content">
+                <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+      
+           
+      
+          
+              </div>
+              <!-- /.error-content -->
+            </div>
+            <!-- /.error-page -->
+          </section>
+        
+
+</div>
+</div>

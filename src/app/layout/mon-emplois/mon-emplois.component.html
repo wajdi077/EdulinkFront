@@ -1,0 +1,350 @@
+<!-- <div >
+
+<br>Mon Emplois 
+
+                <div>
+                                <style>
+                                                td:hover {
+                                                  background-color:darkseagreen;
+                                                  cursor: pointer;
+                                                  
+                                                  }</style>
+                      <table class="card-block table  table-bordered" id="testTable">
+                               <thead >
+                               
+                                        <tr  >
+                            
+                                                        <th >heures\jours</th>
+                                                        <th class="customslim" >{{lundi}}</th>
+                                                        <th class="customslim">{{mardi}}</th>
+                                                        <th class="customslim">{{mercredi}}</th>
+                                                        <th class="customslim">{{jeudi}}</th>
+                                                        <th class="customslim">{{vendredi}}</th>
+                                                        <th class="customslim">{{samedi}}</th>
+                                                        </tr>
+                                                       
+                                          
+                                               
+                          
+                                        
+                                    </thead>
+                               
+                            <tbody  >  
+                            <div >
+
+                            </div>           
+                 <tr> <th class="heures">{{seancel1?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel1?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seancel1?.id}]">{{seancel1?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem1?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seancem1?.id}]"> {{seancem1?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc1?.classe.niveau =='null' ? 'white' : 'yellow'"[routerLink]="['/mon-emplois/list-eleves',{id:seanc1?.id}]"> {{seanc1?.matiere.nommatiereFR}}</td>
+                                  <td [style.background-color] = "seanc1j?.classe.niveau =='null' ? 'white' : 'yellow'"[routerLink]="['/mon-emplois/list-eleves',{id:seanc1j?.id}]">{{seanc1j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc1v?.classe.niveau =='null' ? 'white' : 'yellow'"[routerLink]="['/mon-emplois/list-eleves',{id:seanc1v?.id}]"> {{seanc1v?.matiere.nommatiereFR}}</td>
+                               <td [style.background-color] = "seanc1Samedi?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seanc1Samedi?.id}]"> {{seanc1Samedi?.matiere.nommatiereFR}}</td> 
+                </tr>
+                <tr><th class="heures">{{seancel2?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel2?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel2?.id}]" >{{seancel2?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem2?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seancem2?.id}]"> {{seancem2?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc2?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc2?.id}]">{{seanc2?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc2j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc2j?.id}]"> {{seanc2j?.matiere.nommatiereFR}}</td>
+                        
+                        <td [style.background-color] = "seanc2v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc2v?.id}]"> {{seanc2v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc2Samedi?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seanc2Samedi?.id}]"> {{seanc2Samedi?.matiere.nommatiereFR}}</td>
+                 </tr>
+                <tr><th class="heures">{{seancel3?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel2?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel3?.id}]"> {{seancel3?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem3?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem3?.id}]"> {{seancem3?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc3?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc3?.id}]"> {{seanc3?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc3j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc3j?.id}]"> {{seanc3j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc3v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc3v?.id}]"> {{seanc3v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc3Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc3Samedi?.id}]"> {{seanc3Samedi?.matiere.nommatiereFR}}</td>
+                 </tr>
+                <tr><th class="heures">{{seancel4?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel2?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel4?.id}]"> {{seancel4?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem4?.id}]">{{seancem4?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc4?.id}]">{{seanc4?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc4j?.id}]"> {{seanc4j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc4v?.id}]"> {{seanc4v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc4Samedi?.id}]"> {{seanc4Samedi?.matiere.nommatiereFR}}</td>
+                 </tr>
+                <tr><th class="heures">{{seancel5?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel5?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel5?.id}]"> {{seancel5?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem5?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem5?.id}]">{{seancem5?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc5?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc5?.id}]">{{seanc5?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc5j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc5j?.id}]"> {{seanc5j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc5v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc5v?.id}]"> {{seanc5v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc5Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc5Samedi?.id}]">{{seanc5Samedi?.matiere.nommatiereFR}}</td>
+                 </tr>
+                <tr><th class="heures">{{seancel6?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel6?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel6?.id}]">{{seancel6?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem6?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem6?.id}]"> {{seancem6?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc6?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc6?.id}]">{{seanc6?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc6j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc6j?.id}]"> {{seanc6j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc6v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc6v?.id}]"> {{seanc6v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc6Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc6Samedi?.id}]"> {{seanc6Samedi?.matiere.nommatiereFR}}</td>
+                 </tr>
+                <tr><th class="heures">{{seancel7?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel7?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel7?.id}]"> {{seancel7?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem7?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem7?.id}]"> {{seancem7?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc7?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc7?.id}]">{{seanc7?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc7j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc7j?.id}]"> {{seanc7j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc7v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc7v?.id}]"> {{seanc7v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc7Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc7Samedi?.id}]">{{seanc7Samedi?.matiere.nommatiereFR}}</td>
+                 </tr>
+                <tr><th class="heures">{{seancel8?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel8?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel8?.id}]"> {{seancel8?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem8?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem8?.id}]"> {{seancem8?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc8?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc8?.id}]"> {{seanc8?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc8j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc8j?.id}]"> {{seanc8j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc8v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc8v?.id}]"> {{seanc8v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc8Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc8Samedi?.id}]">{{seanc8Samedi?.matiere.nommatiereFR}}</td>
+                 </tr>
+                <tr><th class="heures">{{seancel9?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel9?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel9?.id}]"> {{seancel9?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem9?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem9?.id}]"> {{seancem9?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc9?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc9?.id}]"> {{seanc9?.matiere.nommatiereFR}}</td>
+                         <td [style.background-color] = "seanc9j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc9j?.id}]"> {{seanc9j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc9v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc9v?.id}]"> {{seanc9v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc9Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc9Samedi?.id}]"> {{seanc9Samedi?.matiere.nommatiereFR}}</td>
+                 </tr>
+              
+                               
+                                </tbody>
+                
+                            </table>
+
+                         
+                </div>
+            
+                </div> -->
+
+                <mat-card *ngIf="checklentgh == 0"> 
+                     <mat-card-title>Emploi de temps</mat-card-title>
+                     <mat-card-content>
+                         <div class="mat-elevation-z8">
+                             <table mat-table [dataSource]="heures">
+                   
+                                 <!-- numInscription Column -->
+                                 <ng-container matColumnDef="heureJour" >
+                                     <th mat-header-cell *matHeaderCellDef > Heures/ Jours </th>
+                                     <td mat-cell *matCellDef="let heures"> {{heures.heureDebut}} - {{heures.heureFin}} </td>
+                                 </ng-container>
+                   
+                                 <ng-container *ngFor="let j of jours">
+                                 <ng-container matColumnDef="{{j.jour}}" >
+                                     <th mat-header-cell *matHeaderCellDef> {{j.jour}} </th>
+                   
+                                     <td mat-cell *matCellDef="let heures" style="  border-right: solid 1px black;  border-bottom: solid 1px black;   border-left: solid 1px black;">
+                                         <ng-container *ngIf="getPg(heures,j)!== undefined"  >
+                                             <!-- <b>Prof:</b> {{getPg(heures,j).prof.prenom}} <br> -->
+                                             <!-- <b>Salle:</b> -->{{getPg(heures,j).salle.nomSalle}} <br> 
+                                             <!-- <b>Matière:</b>--><h3> {{getPg(heures,j).classe.nomclasse}} </h3> <br> 
+                                         </ng-container>
+                                     </td>
+                                 </ng-container>
+                                 </ng-container>
+                                 <!-- 
+                                 <ng-container matColumnDef="mardi">
+                                     <th mat-header-cell *matHeaderCellDef> Mardi </th>
+                                     <ng-container *ngFor="let j of jours">
+                                             <td mat-cell *matCellDef="let heures">
+                                                 <ng-container *ngIf="getPg(heures,j)!== undefined">
+                                                     <b>Prof:</b> {{getPg(heures,j).prof.prenom}} <br>
+                                                     <b>Salle:</b> {{getPg(heures,j).salle.nomSalle}} <br>
+                                                     <b>Matière:</b> {{getPg(heures,j).matiere.nommatiereFR}} <br>
+                                                 </ng-container>
+                                             </td>
+                                         </ng-container>
+                                 </ng-container>
+                   
+                               -->
+                   
+                   
+                                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                             </table>
+                         </div>
+                   
+                   
+                     </mat-card-content>
+                
+                   </mat-card>
+                   <div *ngIf="checklentgh ==1">
+
+                    <div [@routerTransition]>
+                     
+                        <div class="text-center"> <h2>{{classencours?.nomclasse}}</h2> </div>
+                        <div class="text-center"> <h2>{{heurenows}} </h2> </div>
+                            <div class="row card-block">
+                          
+                      
+                                  
+                      
+                      
+                                    <div class="form-group row">
+                                        <label class="txtright col-xl-4">Nom / Prénom/cin</label>
+                                        <input class="form-control col-xl-12" type="text" name="search" [(ngModel)]="filter">
+                                    </div>
+                      
+                      
+                           
+                            </div>
+                      
+                      
+                      
+                      
+                        <div class="row card-block">
+                            <div class="table-responsive">
+                                <table class="card-block table table-hover table-bordered" id="testTable">
+                                    <thead>
+                                    <tr class="bgcleargray">
+                                        <th></th>
+                                        <th (click)="sort('nom')">Nom
+                                            <i aria-hidden="true" class="fa fa-chevron-up"
+                                               [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"
+                                               *ngIf="key =='nom'"></i>
+                                        </th>
+                                        <th>Prénom</th>
+                                     
+                                       
+                                        <th class="text-center">
+                                                <a type="button"  class="btn btn-success" (click)="addAbsence()">Valider les Absences <span class="badge bg-aqua">{{count}}</span></a>
+                                          
+                                        </th>
+                                        <th class="text-center">Exclus</th>
+                                        <th class="text-center">Retenu</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                      
+                                    
+                                    <tr  class="text-center" *ngFor="let u of elevess  
+                                    | filter:filter | orderBy: key : reverse| paginate: { itemsPerPage: 100, currentPage: currentPage }; let rowIndex = index "
+                                    
+                                    [style.background-color]="(u.exclus||enabled)?'FireBrick':'white'" [style.background-color]="(u.absent||enabled)?'Gray':'white'" >
+                                        <td scope="row">
+                                            <i class="fa fa-eye colored" aria-hidden="true" ></i>
+                                        </td>
+                                        <td><p>{{u.nom}}</p></td>
+                                        <td>{{u.prenom}}</td>
+                                      
+                                        
+                                        <td class="text-center" >
+                                    
+                                     
+                                            <label class="switch" >
+                                                <input type="checkbox"  (click)="checkboxes(u)"
+                                                [checked]="_isSelected(u.numInscription)"
+                                                [checked]="u.absent"  
+                                                [(ngModel)]="u.absent"
+                                                (change)="_toggleSelection(u.numInscription)">
+                                                <span class="slider round"></span>
+                                              </label>
+                                              
+                                        </td>
+                                      
+                                       
+                                        <td> 
+                                            <div *ngIf="!_isSelected(u.numInscription)">
+                                            <label class="switch" >
+                                                <input type="checkbox" data-toggle="modal" #bexclus id="bexclus"
+                                                [checked]="u.exclus"  
+                                                [(ngModel)]="u.exclus"
+                                                
+                                                 data-target="#exclus"  (click)="geteleveexclus(u)" 
+                                                  >
+                                                <span class="slider  " title="exclus"> </span>
+                                              </label> </div>
+                                            </td>
+                                           
+                                            
+                                        
+                                       
+                                            
+                                           
+                                        
+                                         <td class="text-center" >  <div *ngIf="!_isSelected(u.numInscription)">
+                                            <label class="switch warning"  >
+                                                <input type="checkbox" data-toggle="modal" data-target="#modal-default"  (click)="geteleve(u)" >
+                                                <span class="slider " title="exclus"> </span>
+                                              </label>
+                                            </div>  </td>  
+                                        
+                
+                                    </tr>
+                       <div class="modal fade" id="exclus">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span></button>
+                                                        <h3>Exclus</h3>
+                                                      <h4 class="modal-title">
+                                                          
+                                                           <h4 class="modal-tittle">vous allez penaliser Mr {{eleve?.nom}} {{eleve?.prenom}}</h4></h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                            <form [formGroup]="exclusform">
+                
+                                                                    <textarea rows="4" cols="70" #remarque  class="form-control col-xl-8" formControlName="remarque">
+                                                                           
+                                                                            </textarea>
+                                                            </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Annuler</button>
+                                                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="exclus()">Valider</button>
+                                                    </div>
+                                                  </div>
+                                                  <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                              </div>
+                                    </tbody>
+                      
+                                </table>
+                                <div  class="text-center">
+                                    <pagination-controls   previousLabel="Précédent"
+                                                           nextLabel="Suivant"
+                                                           (pageChange)="currentPage = $event">
+                      
+                                    </pagination-controls>
+                                </div>
+                      
+                            </div>
+                      
+                      
+                      
+                      
+                        </div>
+                       
+                      </div>
+                      <div class="modal fade" id="modal-default">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                    <h3>RETENU</h3>
+                                  <h4 class="modal-title">
+                                      
+                                       <h4 class="modal-tittle">vous allez penaliser Mr {{eleve?.nom}} {{eleve?.prenom}}</h4></h4>
+                                </div>
+                                <div class="modal-body">
+                                        <form [formGroup]="exclusform">
+                
+                                                <textarea rows="4" cols="70" #remarque  class="form-control col-xl-8" formControlName="remarque">
+                                                       
+                                                        </textarea>
+                                        </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="retenu()">VAlider</button>
+                                </div>
+                              </div>
+                              <!-- /.modal-content -->
+                            </div>
+                      </div>
+
+
+                   </div>

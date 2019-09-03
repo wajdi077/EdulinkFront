@@ -1,0 +1,17 @@
+<div class="col-sm-12">
+  <div class="card bg-light mb-8">
+    <div class="card-header"><h3>importer et affecter ensembles des éleves!!</h3></div>
+    <div class="container" style="width:400px">
+      <div *ngIf="currentFileUpload" class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped"
+        role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+        aria-valuemin="0" aria-valuemax="100"
+        [ngStyle]="{width:progress.percentage+'%'}">
+        {{progress.percentage}}%</div>
+      </div>
+      <label class="btn btn-default">
+        <input class="btn btn-outline-success btn-lg" type="file" (change)="selectFile($event)"></label>
+        <button class="btn btn-outline-warning btn-lg" [disabled]="!selectedFiles" (click)="upload()">Importer</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,99 @@
+<div [@routerTransition]>
+  <br>
+Fiche des élèves pour {{nomclasse}}
+      <div class="row card-block">
+          <div class="card mb-3 col-xl-12">
+
+            
+
+
+                <div class="form-group row">
+                   
+                
+
+                        <form action="#" method="get" class="col-xs-5">
+                                <div class="input-group">
+                                  <input type="text" name="search" class="form-control" placeholder="Search..." [(ngModel)]="filter">
+                                  <span class="input-group-btn">
+                                          <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                                            <i class="fa fa-remove"></i>
+                                          </button>
+                                        </span>
+                                </div>
+                              </form></div>
+
+
+          </div>
+      </div>
+
+
+
+
+  <div class="row card-block">
+      <div class="table-responsive">
+          <table class="card-block table table-hover table-bordered" id="testTable">
+              <thead>
+              <tr class="bgcleargray">
+                  <th></th>
+                  <th (click)="sort('nom')">Nom
+                      <i aria-hidden="true" class="fa fa-chevron-up"
+                         [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"
+                         *ngIf="key =='nom'"></i>
+                  </th>
+                  <th>Prénom</th>
+                  <th class="horizontal-icons">
+                    <button mat-raised-button color="primary"  (click)="AffecterDesEleves()"
+                    [matBadge]="count" matBadgePosition="before" matBadgeColor="accent">
+                    
+                    Affecter au classe
+                  </button>
+                  
+                </th>
+                 
+                  <th class="horizontal-icons">
+                      <!-- <i class="colored fa fa-floppy-o" aria-hidden="true"  ></i> -->
+                  </th>
+              </tr>
+              </thead>
+              <tbody>
+
+              
+              <tr *ngFor="let u of elevess  
+              | filter:filter | orderBy: key : reverse| paginate: { itemsPerPage: 100, currentPage: currentPage }; let rowIndex = index ">
+                  <td scope="row">
+                      <!-- <i class="fa fa-eye colored" aria-hidden="true" ></i> -->
+                  </td>
+                  <td><p>{{u.nom}}</p></td>
+                  <td>{{u.prenom}}</td>
+                
+                  
+                  <td>
+              
+              
+                      <div class="checkbox">
+                          <input type="checkbox"
+                                 [checked]="_isSelected(u.numInscription)"
+                                 (change)="_toggleSelection(u.numInscription)">
+                      </div>
+                     
+                  </td>
+              </tr>
+
+              </tbody>
+
+          </table>
+          <div  class="text-center">
+              <pagination-controls   previousLabel="Précédent"
+                                     nextLabel="Suivant"
+                                     (pageChange)="currentPage = $event">
+
+              </pagination-controls>
+          </div>
+
+      </div>
+
+
+
+
+  </div>
+</div>

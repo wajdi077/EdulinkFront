@@ -1,0 +1,31 @@
+<p>notes de journeéé scolaire  <code></code></p>
+
+<table  class="table table-striped w-auto">
+  <thead>
+  <tr>
+
+
+    <th scope="col"></th>
+
+    <th scope="col">description</th>
+    <th scope="col">remarque</th>
+    <th scope="col">date notification</th>
+
+
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of itemsToIterate  ; index as i">
+    
+
+    <td   > {{i+1}}</td>
+
+    <td   > {{item.description}}</td>
+    <td>{{ item.remarque}}</td>
+    <td>{{ item.datenotification}}</td>
+  
+
+  </tr>
+  </tbody>
+</table>

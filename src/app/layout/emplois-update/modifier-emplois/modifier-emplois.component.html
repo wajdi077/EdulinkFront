@@ -1,0 +1,185 @@
+<button id="openModalButton" [hidden]="true"data-toggle="modal" data-target="#modal-default">Open Modal</button>
+
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Modifier seance pour Mr : {{selectedseance?.prof?.nom }} {{selectedseance?.prof?.prenom }} </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Action:
+      <pre>vous allez modifier la seance de {{selectedseance?.matiere?.nommatiereFR}} pour {{selectedseance?.classe?.nomclasse}}    </pre> 
+    </div>
+    <div class="box-body">
+      Event:
+       <form [formGroup]="loginform">
+        <div class="card card-block">
+                <div class="col-xs-5"> <label class="txtright col-xl-4">Slectionner le Niveau d'etude :</label>
+                    <select #filter class="form-control"  (click)="getClassesbyniveau(filter.value)" formControlName="niveau">
+                        <option *ngFor="let item of list" [value]="item.name" >{{item.name}}</option>
+                    </select >
+                </div>
+                <div class="col-xs-5">
+                        <label class="txtright col-xl-4">Classes :</label>
+                           <select  class="form-control col-xl-3" formControlName="classe">
+                                            <option *ngFor="let c of classess " [value]="c.nomclasse">{{c.nomclasse}}</option>
+                                                   </select>
+                       </div>
+          
+          <div class="col-xs-5">
+                <label class="txtright col-xl-4">Selectionner la salle :</label>
+                <select  class="form-control col-xl-6" formControlName="salle" >
+                <option *ngFor="let s of salles" [value]="s.nomSalle" >{{s.nomSalle}}</option>
+    </select >
+    </div>
+  
+      <div class="col-xs-5">
+            <label class="txtright col-xl-4"> Selectionner une matiere :</label>
+           <select   class="form-control col-xl-6" formControlName="matiere" >
+            <option *ngFor="let m of matieres" [value]="m.nommatiereFR" >{{m.nommatiereFR}}</option>
+       </select >
+   </div> 
+  
+<div class="col-xs-5">
+
+</div>
+
+<div  class="col-xs-5">
+<label class="txtright col-xl-4">inserer le type de seance  : </label>
+
+<textarea  class="form-control" rows="3" placeholder="laisser une remarque  " formControlName="remarque"></textarea>
+
+    </div>
+        </div>
+    </form>
+   
+    </div>
+    
+
+  </div>
+  <div class="modal-footer">
+    
+      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary"  [disabled]="loginform.invalid" data-dismiss="modal" (click)="updateprogramme(selectedseance.id)">Save changes</button>
+  
+  </div>
+</div></div>
+
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="activeDayIsOpen = false"
+      >
+        Précedent
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Aujourd'hui
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="activeDayIsOpen = false"
+      >
+        Suivant
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'locale':weekStartsOn }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        (click)="view = CalendarView.Month"
+        [class.active]="view === CalendarView.Month"
+      >
+        Mois
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="view = CalendarView.Week"
+        [class.active]="view === CalendarView.Week"
+      >
+        Semaine
+      </div>
+      <div
+        class="btn btn-primary"
+        
+        (click)="view = CalendarView.Day"
+        [class.active]="view === CalendarView.Day"
+      >
+        Jours
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view  
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [locale]="locale"
+    [weekStartsOn]="weekStartsOn"
+    [weekendDays]="weekendDays"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day)"
+  
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view  
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    [dayStartHour]="8"
+    [dayEndHour]="18"
+    [hourSegments]="1"
+    [locale]="locale"
+    [weekStartsOn]="weekStartsOn"
+    [weekendDays]="weekendDays"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view 
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [dayStartHour]="08"
+    [hourSegments]="1"
+    [dayEndHour]="18"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-day-view>
+</div>
+
+<br /><br /><br />
+
+<h3>
+  Edit events
+  
+  <div class="clearfix"></div>
+</h3>
+

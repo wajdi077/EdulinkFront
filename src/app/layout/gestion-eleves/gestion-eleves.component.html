@@ -1,0 +1,158 @@
+<div [@routerTransition]>
+
+    <div *ngIf="access.getallop==true">
+        <br>
+        <div class="text-center">
+            <h1>Gestion des élèves</h1>
+        </div>
+        <div class="row card-block">
+            <div class="card mb-3 col-xl-12">
+
+
+                <!-- 
+            <div class="form-group row">
+                <label class="txtright col-xl-4">niveau</label>
+                <select #select class="form-control col-xl-6">
+                    <option *ngFor="let item of listniveau" [value]="item.name"  >{{item.name}}</option>
+                </select>
+
+            </div> -->
+
+                <div class="form-group row">
+
+
+
+                    <form action="#" method="get" class="col-xs-5">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Search..."
+                                [(ngModel)]="filter">
+                            <span class="input-group-btn">
+                                <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-info" [routerLink]="['/gestion-eleves/ajouter']"> Ajouter Un
+                Eleve</button>
+            <button type="submit" class="btn btn-info pull-right" [routerLink]="['/gestion-eleves/inscrire']">
+                Inscription</button>
+        </div>
+        <!-- <div class="row card-block">
+            <div class="text-left">
+                    <button type="button" class="btn btn-primary " [routerLink]="['/gestion-eleves/inscrire']">
+                        S'inscrire
+                    </button>
+                </div>
+                <div class="text-right">
+                        <button type="button" class="btn btn-primary " [routerLink]="['/gestion-eleves/ajouter']">
+                            Ajouter Un Eleve
+                        </button>
+                    </div>
+          <div class="col-xl-12 nopadding">
+             
+              
+            
+          </div>
+      </div> -->
+
+
+
+        <div class="row card-block">
+            <div class="table-responsive">
+                <table class="card-block table table-hover table-bordered" id="testTable">
+                    <thead>
+                        <tr class="bgcleargray">
+                            <th></th>
+                            <th>Identifient</th>
+                            <th (click)="sort('nom')">Nom
+                                <i aria-hidden="true" class="fa fa-chevron-up"
+                                    [ngClass]="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"
+                                    *ngIf="key =='nom'"></i>
+                            </th>
+                            <th>Prénom</th>
+                            <th>Niveau d'Etude</th>
+                            <th>Date naissance</th>
+                            <th>Sexe</th>
+                            <th>Action</th>
+                            <th class="horizontal-icons">
+                            <i class="fa fa-trash trash" aria-hidden="true"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr
+                            *ngFor="let u of eleves  
+              | filter:filter | orderBy: key : reverse| paginate: { itemsPerPage: 15, currentPage: currentPage }; let rowIndex = index ">
+                            <td scope="row">
+
+                                <i class="fa fa-eye colored" aria-hidden="true"
+                                    [routerLink]="['/gestion-eleves/detail',{numInscription:u.numInscription}]"></i>
+                            </td>
+                            <td>{{u.numInscription}}</td>
+                            <td>
+                                <p>{{u.nom}}</p>
+                            </td>
+                            <td>{{u.prenom}}</td>
+                            <td>{{u.niveauEtude}}</td>
+                            <td>{{u.dateNaissance}}</td>
+                            <td>{{u.sexe}}</td>
+
+
+                            <td>
+                                <i class="fa fa-pencil colored" aria-hidden="true"></i></td>
+                            <td>
+                                <div class="checkbox">
+                                    <input type="checkbox" [checked]="_isSelected(u)" (change)="_toggleSelection(u)">
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+                <div class="text-center">
+                    <pagination-controls previousLabel="Précédent" nextLabel="Suivant"
+                        (pageChange)="currentPage = $event">
+
+                    </pagination-controls>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <div *ngIf="access?.getallop==false">
+        <section class="content">
+            <div class="error-page">
+                <div class="text-center">
+                    <h2 class="headline text-yellow"> 404</h2>
+                </div>
+
+
+                <div class="error-content">
+                    <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+
+
+
+
+                </div>
+                <!-- /.error-content -->
+            </div>
+            <!-- /.error-page -->
+        </section>
+
+
+    </div>
+</div>

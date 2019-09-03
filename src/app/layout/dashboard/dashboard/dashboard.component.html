@@ -1,0 +1,87 @@
+<div>
+<button (click)="mode1()">Stat </button>
+<button (click)="mode2()">historique </button>
+<button (click)="mode3()">historiqueClasse </button>
+<button (click)="mode4()">historiqueUser </button>
+</div>
+
+<div *ngIf="mode==1" class="container">
+  <div class="row">
+    <div class="col-md-1">
+      Choisir le niveau:
+    </div>
+    <div class="col-md-6" >
+      <select name="" id="" [(ngModel)]="currentLevel" (change)="getLevel()">
+        <option value="7b">7eme</option>
+        <option value="8b">8eme</option>
+        <option value="9b">9eme</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div style="display: block">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+          [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mode==2" >       
+  <div class="form-group">
+  <input type="text" class="form-control" placeholder="Search "
+          style="width:300px" [(ngModel)]="searchTerm" />
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item active"> 
+        Liste d'Historique des établissements:
+      </li>
+  <li class="list-group-item" *ngFor="let h of his  | hisFilter:searchTerm">
+    <span class="badge">{{h.id}}</span>
+    
+     <p class="text-primary"><i class="fa fa-graduation-cap" aria-hidden="true"></i> {{h.userConnect}} {{h.description}} l'etablissement {{h.etab.libelle}}. Le: {{h.date | date: 'medium'}}</p>
+  </li>
+  <li *ngIf="his.length == 0">
+    l'historique est vide
+  </li>
+</ul>           
+    </div>
+
+    <div *ngIf="mode==3" >             
+
+<ul class="list-group">
+   <li class="list-group-item active"> 
+     Liste d'Historique des Classes:
+   </li>
+  <li class="list-group-item" *ngFor="let h of hisClasse">
+    <span class="badge">{{h.id}}</span> 
+     <p class="text-primary">
+       <i class="fa fa-folder-open-o" aria-hidden="true">  </i>
+   {{h.userConnect}} {{h.description}} la classe  {{h.classe.nomclasse}}. Le: {{h.date | date: 'dd/MM/yyyy'}}
+    </p>
+  </li>
+  <li *ngIf="hisClasse.length == 0"> fa fa-user-circle-o
+    l'historique est vide
+  </li>
+</ul>           
+      </div>
+      <div *ngIf="mode==4" >   
+          <li class="list-group-item active">           
+          Liste d'Historique des Utilisateurs:
+        </li>
+           <ul class="list-group">
+            <li class="list-group-item" *ngFor="let h of hisUsers">
+              <span class="badge">{{h.id}}</span>
+              <p class="text-primary">
+              <i class="fa fa-graduation-cap" aria-hidden="true">  </i>
+              {{h.userConnect}} {{h.description}} {{h.utilisateur.nom}} . Le: {{h.date | date: 'dd/MM/yyyy'}}
+              </p>
+
+            </li>
+            <li *ngIf="hisUsers.length == 0">
+              l'historique est vide
+            </li>
+          </ul>           
+                </div>

@@ -1,0 +1,136 @@
+<div [@routerTransition]>
+       
+<div *ngIf="access.getallop==true">
+        <div class="text-center" ><h1>Gestion des Roles</h1></div>
+    <div>
+    <div class="row card-block">
+            <div class="form-group row">
+                   
+                
+
+                    <form action="#" method="get" class="col-xs-5">
+                            <div class="input-group">
+                              <input type="text" name="search" class="form-control" placeholder="Search..." [(ngModel)]="filter">
+                              <span class="input-group-btn">
+                                      <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                                        <i class="fa fa-remove"></i>
+                                      </button>
+                                    </span>
+                            </div>
+                          </form></div>
+        <div class="col-xl-4"></div>
+        <div class="col-xl-4 nopadding">
+                <div *ngIf="access.addop==true">
+            <div class="text-right">
+                <button (click)="adding = true; addingUsers=false " type="button" class="btn btn-primary ">
+                    Créer rôle
+                </button>
+           
+            </div></div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row card-block">
+        <div class="table-responsive">
+            <table class="card-block table table-hover table-bordered">
+                <thead class="bggray">
+                <tr>
+                    <th class="col-xl-4  text-center">Role</th>
+                    <!-- <th class="col-xl-1">Niveau de permission</th> -->
+                    <th class="text-center">        Visualiser ou modifier les acces Url</th>
+                    <th class="text-center">Modifier </th>
+                    <th>
+                        
+                        <i class="trash fa fa-trash" aria-hidden="true" (click)="deleteRole()"></i>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody style="background-color: #f9f9f9;">
+
+
+                <tr *ngIf="adding">
+                    <td><input [(ngModel)]="newRole.description" (keypress)="chek($event,newRole)" class="form-control" placeholder="Nom"/></td>
+                    <td></td>
+                    <td>
+                        <i (click)="save(newRole)"  class="colored fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;
+                        <i class="colored fa fa-times-circle" aria-hidden="true" (click)="adding = false;"></i>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr *ngIf="roles.length == 0">
+                    <td colspan="99" align="center">
+                        Aucun utilisateur
+                    </td>
+                </tr>
+
+                <tr *ngFor="let role of roles| filter:filter |
+                     paginate: { itemsPerPage: 5, currentPage: currentPage } ;let i=index;">
+                    <td>
+                        <label *ngIf="editing != i">{{role.description}}</label>
+                        <div *ngIf="editing == i">
+                            <input *ngIf="editing == i" type="text" name="" [(ngModel)]="role.description"/>
+                            <i (click)="saveEditRole(role)" class="fa fa-check-circle-o colored"></i>
+                        </div>
+                    </td>
+                    <td align="center">
+                        <i [routerLink]="['/gestion-roles/ajouter',{id:role.id}]" class="colored fa  fa-get-pocket" aria-hidden="true"></i>
+                    </td>
+                    <td align="center">
+                            <a class="btn btn-app">
+                                    <i class="fa fa-edit" (click)="editing = i" aria-hidden="true"></i> Modifier
+                                  </a>
+                     
+                    </td>
+                    <td align="center">
+                        <div class="checkbox">
+                            <input type="checkbox"
+                                   [checked]="_isSelected(role.id)"
+                                   (change)="_toggleSelection(role.id)">
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="text-center">
+                <pagination-controls previousLabel="Précédent"
+                                     nextLabel="Suivant"
+                                     (pageChange)="currentPage = $event">
+
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+    <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">
+        <i class="fa fa-check" aria-hidden="true"></i> {{successMessage }}
+    </ngb-alert>
+
+    <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">
+        <i class="fa fa-check" aria-hidden="true"></i> {{errorMessage }}
+    </ngb-alert>
+</div>
+
+</div>
+<div  *ngIf="access?.getallop==false">
+        <section class="content">
+                <div class="error-page">
+                  <div class="text-center">  <h2 class="headline text-yellow"> 404</h2></div>
+                 
+          
+                  <div class="error-content">
+                    <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+          
+               
+          
+              
+                  </div>
+                  <!-- /.error-content -->
+                </div>
+                <!-- /.error-page -->
+              </section>
+            
+    
+    </div></div>

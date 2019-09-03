@@ -1,0 +1,119 @@
+<div [@routerTransition]>
+    <br>
+    <h4 class="text-center">Gestion des accés pour le rôle {{role.description}} </h4>
+    <div class="row card-block">
+        <div class="col-xl-4 nopadding">
+            <input class="form-control" placeholder="Rechercher..."
+                   [(ngModel)]="filter"/>
+        </div>
+        <div class="col-xl-4"></div>
+        <div class="col-xl-4 nopadding">
+        </div>
+    </div>
+
+    <br>
+    <div class="row card-block ">
+        <div class="table-responsive">
+            <table class="card-block table table-hover table-bordered">
+                <thead class="bggray">
+                <tr>
+                    <th> Gestion</th>
+                    <th> Ajout</th>
+                    <th colspan="2"> Visualisation</th>
+                    <th> Modification</th>
+                    <th> Suppression</th>
+
+                </tr>
+                </thead>
+
+                <tbody >
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+                <tr style="background-color: #f9f9f9;" *ngFor=" let module of modules| filter:filter |
+                         paginate: { itemsPerPage: 5, currentPage: currentPage } ;let i=index;">
+                    <td>
+                        <label>{{module.gestion}}</label>
+                    </td>
+                    <td align="center">
+                        <label>
+                            <input type="checkbox" style="visibility: hidden;"
+                                   [ngModel]="module.addop"
+                                   (ngModelChange)="module.addop = $event;UpdateUrl(module)"
+                                   [ngModelOptions]="{standalone: true}">
+                            <i *ngIf="module.addop" class="fa fa-check-circle-o colored"></i>
+                            <i *ngIf="!module.addop" style="color: red;" class="fa fa-times-circle-o"></i>
+                        </label>
+                    </td>
+                    <td align="center">
+                        <label>
+                            <input type="checkbox" style="visibility: hidden;"
+                                   [ngModel]="module.getallop"
+                                   (ngModelChange)="module.getallop = $event;UpdateUrl(module)"
+                                   [ngModelOptions]="{standalone: true}">
+                            <i *ngIf="module.getallop" class="fa fa-check-circle-o colored"></i>
+                            <i *ngIf="!module.getallop" style="color: red;" class="fa fa-times-circle-o"></i>
+                        </label>
+                    </td>
+                    <td align="center">
+                        <label>
+                            <input type="checkbox" style="visibility: hidden;"
+                                   [ngModel]="module.getallop"
+                                   (ngModelChange)="module.getallop = $event;UpdateUrl(module)"
+                                   [ngModelOptions]="{standalone: true}">
+                            <i *ngIf="module.getallop" class="fa fa-check-circle-o colored"></i>
+                            <i *ngIf="!module.getallop" style="color: red;" class="fa fa-times-circle-o"></i>
+                        </label>
+                    </td>
+                    <td align="center">
+                        <label>
+                            <input type="checkbox" style="visibility: hidden;"
+                                   [ngModel]="module.updateop"
+                                   (ngModelChange)="module.updateop = $event;UpdateUrl(module)"
+                                   [ngModelOptions]="{standalone: true}">
+                            <i *ngIf="module.updateop" class="fa fa-check-circle-o colored"></i>
+                            <i *ngIf="!module.updateop" style="color: red;" class="fa fa-times-circle-o"></i>
+                        </label>
+                    </td>
+                    <td align="center">
+                        <label>
+                            <input type="checkbox" style="visibility: hidden;"
+                                   [ngModel]="module.removeop"
+                                   (ngModelChange)="module.removeop = $event;UpdateUrl(module)"
+                                   [ngModelOptions]="{standalone: true}">
+                            <i *ngIf="module.removeop" class="fa fa-check-circle-o colored"></i>
+                            <i *ngIf="!module.removeop" style="color: red;" class="fa fa-times-circle-o"></i>
+                        </label>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="text-center">
+                <pagination-controls previousLabel="Précédent"
+                                     nextLabel="Suivant"
+                                     (pageChange)="currentPage = $event">
+
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <div class="row espace card-block">
+        <button type="button"
+                [routerLink]="['../']"
+                class="btn btn-primary second-btn-right ">Annuler
+        </button>
+        <button type="submit" class="btn btn-primary first-btn-right"
+                (click)="addRole()">Valider
+        </button>
+    </div>
+
+
+</div>

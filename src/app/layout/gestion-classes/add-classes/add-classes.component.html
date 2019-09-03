@@ -1,0 +1,52 @@
+
+<div [@routerTransition]>
+  <br>
+  <h3>Ajouter Classe </h3>
+  <form [formGroup]="loginform"
+        (submit)="login($event, nomclasse.value, niveau.value, select.value, remarque.value)">
+      <div class="espace card card-block">
+     
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">Nom de la classes </b>
+              <input #nom class="form-control col-xl-6" formControlName="nomclasse">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.nomclasse.valid && loginform.get('nomclasse').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">Le nom de la classe  ne peut pas etre vide.</div>
+              </span>
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">niveau de classe </b>
+              <input #prenom class="form-control col-xl-6" formControlName="niveau">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.niveau.valid && loginform.get('niveau').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6">niveau  ne peut pas etre vide.</div>
+              </span>
+
+
+          <div class="row espace25">
+              <b class="col-xl-4 txtrightespace">Observation</b>
+              <input #username class="form-control col-xl-6" formControlName="remarque">
+          </div>
+          <span class="row espace25" *ngIf="!loginform.controls.remarque.valid && loginform.get('remarque').touched">
+              <div class="col-xl-4"></div> <div class="col-xl-6"> Observation ne peut pas etre vide.</div>
+              </span>
+
+         
+         
+         
+          
+
+        
+       
+      </div>
+  </form>
+  <div class="espace card-block">
+      <button type="button"
+              [routerLink]="['../']"
+              class="btn btn-primary second-btn-right">Annuler
+      </button>
+      <button type="submit" class="btn btn-primary first-btn-right" (click)="addClasse()"  [disabled]="loginform.invalid">Valider</button>
+  </div>
+
+</div>

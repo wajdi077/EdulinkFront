@@ -1,0 +1,36 @@
+<p>Statistique de journeéé scolaire  <code></code></p>
+
+<table  class="table table-striped w-auto">
+  <thead>
+  <tr>
+    <th scope="col"></th>
+    <th scope="col"></th>
+
+
+    <th scope="col">Prof</th>
+    <th scope="col">Matiere</th>
+    <th scope="col">Absences</th>
+    <th scope="col">Exlus</th>
+    <th scope="col">Avertissements</th>
+    <th scope="col">Retenus</th>
+
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of datasource  ; index as i">
+    
+
+        <th scope="row">{{ i + 1 }}</th>
+
+    <th scope="row"> {{item.classe.nomclasse}}</th>
+    <td>{{ item.prof.nom }}</td>
+    <td>{{ item.matiere.nommatiereFR }}</td>
+    <td> {{ item.absence }}</td>
+    <td>{{ item.exclu | number }}</td>
+    <td>{{ item.avertisement | number }}</td>
+    <td>{{ item.retenu | number }}</td>
+
+  </tr>
+  </tbody>
+</table>

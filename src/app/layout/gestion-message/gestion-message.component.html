@@ -1,0 +1,194 @@
+
+<section class="content">
+    <div class="row">
+      <div class="col-md-3">
+      
+            
+           
+          
+        <a  class="btn btn-primary btn-block margin-bottom" data-toggle="modal" data-target="#modal-default">Compose</a>
+
+        <div class="box box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Folders</h3>
+
+            <div class="box-tools">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+            <tr>  <li class="active"><a [routerLink]="['/gestion-message']"><i class="fa fa-inbox"></i> Inbox
+                <span class="label label-primary pull-right">12</span></a></li></tr>
+            <tr> <li><a [routerLink]="['/gestion-message/message-envoye']"><i class="fa fa-envelope-o"></i> Sent</a></li></tr> 
+     
+            </ul>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /. box -->
+       
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-md-9">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Boite de réception</h3>
+
+            <div class="box-tools pull-right">
+              <div class="has-feedback">
+                  <div class="form-group row">
+                   
+                
+
+                      <form action="#" method="get" class="col-xs-5">
+                              <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Search..." [(ngModel)]="filter">
+                                <span class="input-group-btn">
+                                        <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                                          <i class="fa fa-remove"></i>
+                                        </button>
+                                      </span>
+                              </div>
+                            </form></div>
+              </div>
+            </div>
+            <!-- /.box-tools -->
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+           
+            <div class="table-responsive mailbox-messages">
+              <table class="table table-hover table-striped">
+                <tbody>
+                  <tr *ngIf="messagerecu?.length == 0">
+                    <td colspan="99" align="center">
+                       aucun message
+                    </td>
+                </tr>
+                <tr *ngFor="let m of messagerecu| filter:filter |
+                paginate: { itemsPerPage: 5, currentPage: currentPage } ;let i=index;" (click)="getmessage(m)" data-toggle="modal" data-target="#modal-defaults">
+                  <td><input type="checkbox"  [checked]="_isSelected(m.id)"
+                    (change)="_toggleSelection(m.id)"></td>
+                  <td class="mailbox-star" ><a ><i class="fa fa-star text-yellow"></i></a></td>
+                  <td class="mailbox-name" ><a >{{m.sender.nom}} {{m.sender.prenom}}</a></td>
+                  <td class="mailbox-subject" ><b>{{m.sujet.slice(0,30)}}</b>
+                  </td>
+                  <td class="mailbox-attachment"></td>
+                  <td class="mailbox-date">{{m.duree}}</td>
+                </tr>
+             
+                </tbody>
+              </table>
+              <div class="text-center">
+                  <pagination-controls previousLabel="Précédent"
+                                       nextLabel="Suivant"
+                                       (pageChange)="currentPage = $event">
+    
+                  </pagination-controls>
+              </div>
+              <!-- /.table -->
+            </div>
+            <!-- /.mail-box-messages -->
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer no-padding">
+          
+          </div>
+        </div>
+        <!-- /. box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <div class="modal fade" id="modal-default">
+      <section class="content">
+        <div class="row">
+        
+          <div class="col-md-9">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Compose New Message</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+              </div>
+              <!-- /.box-header -->
+              <form [formGroup]="sendform"
+              (submit)="sendmessage($event, reciever.value, sujet.value, message.value)">
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="form-group">
+                  <input class="form-control" formControlName="reciever" placeholder="To:"   #reciever  id="typeahead-basic" type="text" class="form-control"  [ngbTypeahead]="search"/>
+                  <hr>
+                  
+                </div>
+                
+                <div class="form-group">
+                  <input #sujet class="form-control" formControlName="sujet" placeholder="Subject:">
+    
+                </div>
+                <div class="form-group">
+                      <textarea #message id="compose-textarea" formControlName="message" class="form-control" style="height: 300px">
+                   
+                      </textarea>
+                  
+                </div>
+                
+                <div class="form-group">
+                  <div class="btn btn-default btn-file">
+                    <i class="fa fa-paperclip"></i> Attachment
+                    <input type="file" name="attachment">
+                  </div>
+                  <p class="help-block">Max. 32MB</p>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <div class="pull-right">
+                  <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
+                  <button type="button" [disabled]="sendform.invalid" class="btn btn-primary" data-dismiss="modal" (click)="sendmessage(reciever,sujet,message)" data-dismiss="modal"> Send</button>
+                </div>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" data-dismiss="modal"></i> Annuler</button>
+                
+              </div>
+            </form>
+              
+              <!-- /.box-footer -->
+            </div>
+            
+            <!-- /. box -->
+          </div>
+          
+          <!-- /.col -->
+        </div>
+        
+        <!-- /.row -->
+      </section>
+      
+    </div>
+    
+    <!-- /.row -->
+  </section>
+  <div class="modal fade" id="modal-defaults">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Details message</h4>
+        </div>
+        <div class="modal-body">
+          <h3>{{message.date_message | date:"short"}}</h3>
+          <p>{{message?.sujet}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+         
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.content -->

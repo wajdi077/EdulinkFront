@@ -1,0 +1,117 @@
+<div [@routerTransition]>
+        <div class="text-center" ><h1>Gestion des semaines scolaires!!</h1></div>
+    <br>
+
+        <div class="row card-block">
+            <div class="card mb-3 col-xl-12">
+
+           
+
+             
+
+
+                    <div class="form-group row">
+                   
+                
+
+                            <form action="#" method="get" class="col-xs-5">
+                                    <div class="input-group">
+                                      <input type="text" name="search" class="form-control" placeholder="Search..." [(ngModel)]="filter">
+                                      <span class="input-group-btn">
+                                              <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                                                <i class="fa fa-remove"></i>
+                                              </button>
+                                            </span>
+                                    </div>
+                                  </form></div>
+
+
+            </div>
+        </div>
+
+       
+
+
+
+    <div class="row card-block">
+        <div class="table-responsive">
+            <table class="card-block table table-hover table-bordered" id="testTable">
+                <thead>
+                <tr class="bgcleargray">
+                  
+                    <th  > Semaine Scolaire  
+                    
+                    </th>
+                  
+                
+                    <th>Action</th>
+               
+                </tr>
+                </thead>
+                <tbody>
+
+           
+
+     <tr *ngFor="let u of semaines| filter:filter 
+     | orderBy: key : reverse|
+     paginate: { itemsPerPage: 5, currentPage: currentPage } ;let i=index;">
+                   
+                    <td><p>{{u.semaine}}</p></td>
+                 
+                 
+                    <td>
+                        <button  class="btn btn-outline-warning " (click)="changeranges(u)" data-toggle="modal" data-target="#modal-default">changer le delai de la semaine </button>
+                     
+
+                    </td>
+            
+                </tr>
+
+                </tbody>
+
+            </table>
+            <div  class="text-center">
+                <pagination-controls   previousLabel="Précédent"
+                                       nextLabel="Suivant"
+                                       (pageChange)="currentPage = $event">
+
+                </pagination-controls>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+</div>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Default Modal</h4>
+        </div>
+        <div class="modal-body">
+            <p>
+                veuillez selectionner l'interval de temps de la semaine scolaire : {{sem?.semaine}} 
+              </p>
+              <div class="row espace25">
+                  <b class="col-xl-4 txtrightespace">Date de Debut</b>
+                  <input type="date"  [(ngModel)]="datedebut"  class="form-control col-xl-6" >
+              </div>
+              <div class="row espace25">
+                  <b class="col-xl-4 txtrightespace">date de Fin</b>
+                  <input type="date"  [(ngModel)]="datefin" class="form-control col-xl-6" >
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addInterval()">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>

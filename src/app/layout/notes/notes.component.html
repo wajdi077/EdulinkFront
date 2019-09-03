@@ -1,0 +1,270 @@
+<!-- <div >
+    
+    <br>Mon Emplois 
+    
+    <div>
+        <style>
+            td:hover {
+                background-color:darkseagreen;
+                cursor: pointer;
+                
+            }</style>
+            <table class="card-block table  table-bordered" id="testTable">
+                <thead >
+                    
+                    <tr  >
+                        
+                        <th >heures\jours</th>
+                        <th class="customslim" >{{lundi}}</th>
+                        <th class="customslim">{{mardi}}</th>
+                        <th class="customslim">{{mercredi}}</th>
+                        <th class="customslim">{{jeudi}}</th>
+                        <th class="customslim">{{vendredi}}</th>
+                        <th class="customslim">{{samedi}}</th>
+                    </tr>
+                    
+                    
+                    
+                    
+                    
+                </thead>
+                
+                <tbody  >  
+                    <div >
+                        
+                    </div>           
+                    <tr> <th class="heures">{{seancel1?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel1?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seancel1?.id}]">{{seancel1?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem1?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seancem1?.id}]"> {{seancem1?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc1?.classe.niveau =='null' ? 'white' : 'yellow'"[routerLink]="['/mon-emplois/list-eleves',{id:seanc1?.id}]"> {{seanc1?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc1j?.classe.niveau =='null' ? 'white' : 'yellow'"[routerLink]="['/mon-emplois/list-eleves',{id:seanc1j?.id}]">{{seanc1j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc1v?.classe.niveau =='null' ? 'white' : 'yellow'"[routerLink]="['/mon-emplois/list-eleves',{id:seanc1v?.id}]"> {{seanc1v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc1Samedi?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seanc1Samedi?.id}]"> {{seanc1Samedi?.matiere.nommatiereFR}}</td> 
+                    </tr>
+                    <tr><th class="heures">{{seancel2?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel2?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel2?.id}]" >{{seancel2?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem2?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seancem2?.id}]"> {{seancem2?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc2?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc2?.id}]">{{seanc2?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc2j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc2j?.id}]"> {{seanc2j?.matiere.nommatiereFR}}</td>
+                        
+                        <td [style.background-color] = "seanc2v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc2v?.id}]"> {{seanc2v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc2Samedi?.classe.niveau =='null' ? 'white' : 'yellow'" [routerLink]="['/mon-emplois/list-eleves',{id:seanc2Samedi?.id}]"> {{seanc2Samedi?.matiere.nommatiereFR}}</td>
+                    </tr>
+                    <tr><th class="heures">{{seancel3?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel2?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel3?.id}]"> {{seancel3?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem3?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem3?.id}]"> {{seancem3?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc3?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc3?.id}]"> {{seanc3?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc3j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc3j?.id}]"> {{seanc3j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc3v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc3v?.id}]"> {{seanc3v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc3Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc3Samedi?.id}]"> {{seanc3Samedi?.matiere.nommatiereFR}}</td>
+                    </tr>
+                    <tr><th class="heures">{{seancel4?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel2?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel4?.id}]"> {{seancel4?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem4?.id}]">{{seancem4?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc4?.id}]">{{seanc4?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc4j?.id}]"> {{seanc4j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc4v?.id}]"> {{seanc4v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc4Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc4Samedi?.id}]"> {{seanc4Samedi?.matiere.nommatiereFR}}</td>
+                    </tr>
+                    <tr><th class="heures">{{seancel5?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel5?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel5?.id}]"> {{seancel5?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem5?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem5?.id}]">{{seancem5?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc5?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc5?.id}]">{{seanc5?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc5j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc5j?.id}]"> {{seanc5j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc5v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc5v?.id}]"> {{seanc5v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc5Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc5Samedi?.id}]">{{seanc5Samedi?.matiere.nommatiereFR}}</td>
+                    </tr>
+                    <tr><th class="heures">{{seancel6?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel6?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel6?.id}]">{{seancel6?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem6?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem6?.id}]"> {{seancem6?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc6?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc6?.id}]">{{seanc6?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc6j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc6j?.id}]"> {{seanc6j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc6v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc6v?.id}]"> {{seanc6v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc6Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc6Samedi?.id}]"> {{seanc6Samedi?.matiere.nommatiereFR}}</td>
+                    </tr>
+                    <tr><th class="heures">{{seancel7?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel7?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel7?.id}]"> {{seancel7?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem7?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem7?.id}]"> {{seancem7?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc7?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc7?.id}]">{{seanc7?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc7j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc7j?.id}]"> {{seanc7j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc7v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc7v?.id}]"> {{seanc7v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc7Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc7Samedi?.id}]">{{seanc7Samedi?.matiere.nommatiereFR}}</td>
+                    </tr>
+                    <tr><th class="heures">{{seancel8?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel8?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel8?.id}]"> {{seancel8?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem8?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem8?.id}]"> {{seancem8?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc8?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc8?.id}]"> {{seanc8?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc8j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc8j?.id}]"> {{seanc8j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc8v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc8v?.id}]"> {{seanc8v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc8Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc8Samedi?.id}]">{{seanc8Samedi?.matiere.nommatiereFR}}</td>
+                    </tr>
+                    <tr><th class="heures">{{seancel9?.heure.heureDebut}}</th>
+                        <td [style.background-color] = "seancel9?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancel9?.id}]"> {{seancel9?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seancem9?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seancem9?.id}]"> {{seancem9?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc9?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc9?.id}]"> {{seanc9?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc9j?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc9j?.id}]"> {{seanc9j?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc9v?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc9v?.id}]"> {{seanc9v?.matiere.nommatiereFR}}</td>
+                        <td [style.background-color] = "seanc9Samedi?.classe.niveau =='null' ? 'white' : 'yellow'"  [routerLink]="['/mon-emplois/list-eleves',{id:seanc9Samedi?.id}]"> {{seanc9Samedi?.matiere.nommatiereFR}}</td>
+                    </tr>
+                    
+                    
+                </tbody>
+                
+            </table>
+            
+            
+        </div>
+        
+    </div> -->
+    
+    
+    
+    
+    
+    
+    
+    
+    <button id="openModalButton" [hidden]="true"data-toggle="modal" data-target="#modal-default">Open Modal</button>
+    
+    <div class="modal fade" id="modal-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter des notes   </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  
+                    <div class="box-body">
+                            
+                        
+      <form [formGroup]="studentsaveform" #savestudent (ngSubmit)="saveStudent(saveStudent)">  
+            <div class="form-group">  
+                <label for="name">Description</label>  
+                <input type="text" class="form-control"  formControlName="description" data-toggle="tooltip"   
+                 >  
+             
+            </div>  
+            <div class="form-group">  
+                    <label for="name">Remaruque</label>  
+                    <input type="text" class="form-control"  formControlName="remarque" data-toggle="tooltip"   
+                     >  
+                 
+                </div>  
+      
+            <div class="form-group">  
+                <label for="name">Date</label>  
+                <input type="date" class="form-control" formControlName="date"   
+               >  
+               <input type="time" id="appt" name="appt"  formControlName="utilTime"
+       min="09:00" max="18:00" required>
+               
+            </div>  
+      
+      
+             
+      
+            <button type="submit" class="btn btn-success" >Submit</button>  
+        </form>  
+    
+                        
+
+
+
+
+
+
+
+
+
+
+                        
+                        
+                    </div>
+                    
+                    
+                </div>
+                <div class="modal-footer">
+
+                    
+                </div>
+            </div></div>
+    
+        
+        
+        
+        
+        
+        
+        
+        <mat-card > 
+                <button type="button"  [routerLink]="['afichernotes']" class="btn btn-success" >afficher mes notes</button>  
+
+            <mat-card-title>Ajouter des notes </mat-card-title>
+            <mat-card-content>
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="heures">
+                        
+                        <!-- numInscription Column -->
+                        <ng-container matColumnDef="heureJour" >
+                            <th mat-header-cell *matHeaderCellDef  > Heures/ Jours </th>
+                            <td mat-cell *matCellDef="let heures "  > {{heures.heureDebut}} - {{heures.heureFin}} </td>
+                        </ng-container>
+                        
+                        <ng-container *ngFor="let j of jours  ">
+                            <ng-container matColumnDef="{{j.jour}}" >
+
+
+
+
+                                <th mat-header-cell *matHeaderCellDef> {{j.jour}} </th>
+                                
+                                <td  (click)="addNote(getPg(heures,j).id)"          (click)='clicked(getPg(heures,j).id)'
+                                id="openModalButton" [attr.data-toggle]="getPg(heures,j)!== undefined ? 'modal': '' " data-target="#modal-default" 
+                             *matCellDef="let heures"  
+                                 style="  border-right: solid 1px black;  border-bottom: solid 1px black;   border-left: solid 1px black;"   >
+                                    <ng-container *ngIf="getPg(heures,j)!== undefined"   >
+                                        
+
+                                            <mat-cell [style.background-color]="isSelected(getPg(heures,j).id)==true ? 'red' : '' "
+                                       > {{getPg(heures,j).salle.nomSalle}} {{getPg(heures,j).classe.nomclasse}}</mat-cell>
+
+
+                                        <!-- <b>Prof:</b> {{getPg(heures,j).prof.prenom}} <br> -->
+                                        <!-- <b>Salle:</b> --> <br> 
+                                        <!-- <b>Matière:</b>--><h3>  </h3> <br> 
+
+                                    </ng-container>
+                                </td>
+                                
+                                
+                            </ng-container>
+                        </ng-container>
+                        <!-- 
+                            <ng-container matColumnDef="mardi">
+                                <th mat-header-cell *matHeaderCellDef> Mardi </th>
+                                <ng-container *ngFor="let j of jours">
+                                    <td mat-cell *matCellDef="let heures">
+                                        <ng-container *ngIf="getPg(heures,j)!== undefined">
+                                            <b>Prof:</b> {{getPg(heures,j).prof.prenom}} <br>
+                                            <b>Salle:</b> {{getPg(heures,j).salle.nomSalle}} <br>
+                                            <b>Matière:</b> {{getPg(heures,j).matiere.nommatiereFR}} <br>
+                                        </ng-container>
+                                    </td>
+                                </ng-container>
+                            </ng-container>
+                            
+                        -->
+                        
+                        
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+                
+                
+            </mat-card-content>
+            
+        </mat-card>
+        

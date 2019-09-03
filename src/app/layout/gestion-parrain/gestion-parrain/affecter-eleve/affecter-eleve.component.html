@@ -1,0 +1,91 @@
+
+<div class="box"><div class="box-body">
+  
+<div class="text-center">
+
+
+    <h3>vous allez affecter des élèves pour Mr (Mme)   {{ user?.nom}} {{user?.prenom}}</h3>
+  </div>
+  
+  <div class="form-group row">
+                   
+                
+
+    <form action="#" method="get" class="col-xs-5">
+            <div class="input-group">
+              <input type="text" name="search" class="form-control" placeholder="Search..." [(ngModel)]="filter">
+              <span class="input-group-btn">
+                      <button type="reset" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                    </span>
+            </div>
+          </form></div>
+    <table  class="table table-bordered table-striped table-hover">
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Niveau d'Etude</th>
+        <th>Numéro D'inscription</th>
+        <th>Sexe</th>
+        <th>cin</th>
+       <td><a class="btn btn-app" (click)="AffecterDesEleves()">
+        <span class="badge bg-aqua">{{count}}</span>
+        <i class="fa fa-save"></i> Save
+      </a></td>
+      </tr>
+      </thead>
+      <tbody  >
+      <tr *ngFor="let u of eleves   | filter:filter | orderBy: key : reverse| paginate: { itemsPerPage: 100, currentPage: currentPage }; let rowIndex = index "  >
+        
+          <td><p>{{u.nom}}</p></td>
+          <td>{{u.prenom}}</td>
+          <td>{{u.niveauEtude}}</td>
+          <td>{{u.numInscription}}</td>
+        
+          <td>{{u.sexe}}</td>
+          <td>{{u.cin}}</td>
+         
+        <td class="btn-group" >
+          
+         
+              
+               
+                <div class="custom-control custom-checkbox" >
+                  
+                    <input type="checkbox" (click)="checkboxes(u)"
+                           [checked]="_isSelected(u.numInscription)"
+                           (change)="_toggleSelection(u.numInscription)">
+                </div>
+              
+        </td>
+      </tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr> 
+      </tbody>
+    
+    </table>
+    <div  class="text-center">
+      <pagination-controls   previousLabel="Précédent"
+                             nextLabel="Suivant"
+                             (pageChange)="currentPage = $event">
+
+      </pagination-controls>
+  </div>
+  </div></div>
+  <!-- <script> 
+   function checkboxes()
+      {
+       var inputElems = document.getElementsByTagName("input"),
+        this.count = 0;
+
+        for (var i=0; i<inputElems.length; i++) {       
+           if (inputElems[i].type == "checkbox" && inputElems[i].checked == true){
+              this.count++;
+              
+           }
+
+        }
+     }
+  </script> -->
+    
