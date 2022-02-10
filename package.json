@@ -44,7 +44,7 @@
     "ngb-modal": "^2.0.3",
     "ngx-pagination": "^3.2.1",
     "ngx-toastr": "^10.0.4",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "pipes-module": "0.0.5",
     "popper": "^1.0.1",
     "rxjs": "~6.3.3",
